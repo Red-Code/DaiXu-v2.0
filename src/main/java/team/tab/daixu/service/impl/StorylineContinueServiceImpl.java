@@ -1,0 +1,29 @@
+package team.tab.daixu.service.impl;
+
+import team.tab.daixu.dao.StorylineContinueDao;
+import team.tab.daixu.entity.StorylineContinueEntity;
+import team.tab.daixu.service.StorylineContinueService;
+
+import java.util.List;
+
+/**
+ * Created by CLY on 2017/1/5.
+ */
+public class StorylineContinueServiceImpl implements StorylineContinueService {
+    private StorylineContinueDao storylineContinueDaoImpl;
+
+    @Override
+    public Boolean save(StorylineContinueEntity storylineContinueEntity) {
+        return storylineContinueDaoImpl.save(storylineContinueEntity);
+    }
+
+    @Override
+    public Boolean update(int StorylineContinueId, StorylineContinueEntity storylineContinueEntity) {
+        return storylineContinueDaoImpl.update(StorylineContinueId, storylineContinueEntity);
+    }
+
+    @Override
+    public List<StorylineContinueEntity> findNoEndByStorylineId(int storyline_id) {
+        return storylineContinueDaoImpl.findNoEndByStorylineId(storyline_id);
+    }
+}
