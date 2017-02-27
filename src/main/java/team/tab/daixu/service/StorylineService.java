@@ -15,7 +15,7 @@ public interface StorylineService {
      * @param storyline_img 故事线封面图
      * @return 存储后的持久化对象(如果没有存储成功会返回null)
      */
-    StorylineEntity save(StorylineEntity storylineEntity, MultipartFile storyline_img);
+    StorylineEntity save(StorylineEntity storylineEntity, MultipartFile storyline_img) throws Exception;
 
     /**
      * 改
@@ -29,7 +29,7 @@ public interface StorylineService {
      * @param now_page 当前页数，1表示第一页
      * @param order 1表示最新，2表示最热
      * @param rule 1表示全部。2表示二万字以下。3表示二万字到十万字。4表示十万字以上
-     * @param show_num 展示页数
+     * @param show_num 展示条数
      * @return 故事线列表
      */
     List<StorylineEntity> findMoreByWhere(Integer now_page, String order, Integer rule,int show_num);

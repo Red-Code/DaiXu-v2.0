@@ -25,12 +25,11 @@ public interface StorylineDao {
     /**
      * 根据条件查询出故事线列表。按更新时间从新到旧排序
      * @param limit_begin 起始查询条数
-     * @param order 1表示最新，2表示最热
      * @param rule 1表示全部。2表示二万字以下。3表示二万字到十万字。4表示十万字以上
      * @param show_num 查询条数
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByOrderNews(Integer limit_begin, String order, Integer rule,int show_num);
+    List<StorylineEntity> findMoreByOrderNews(int limit_begin, Integer rule,int show_num);
 
     /**
      * 根据条件查询出故事线列表。按更新时间从新到旧排序
@@ -40,7 +39,7 @@ public interface StorylineDao {
      * @param tag 按标签查询的“标签”
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByOrderNews(Integer limit_begin, Integer rule,int show_num, String tag);
+    List<StorylineEntity> findMoreByOrderNews(int limit_begin, Integer rule,int show_num, String tag);
 
     /**
      * 根据用户id查询该用户发布的故事线列表
@@ -58,7 +57,7 @@ public interface StorylineDao {
      * @param show_num 查询条数
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByOrderHot(Integer limit_begin, Integer rule,int show_num);
+    List<StorylineEntity> findMoreByOrderHot(int limit_begin, Integer rule,int show_num);
 
     /**
      * 根据条件查询出故事线列表。按观看次数由大到小排序
@@ -68,7 +67,7 @@ public interface StorylineDao {
      * @param tag 按标签查询的“标签”
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByOrderHot(Integer limit_begin, Integer rule,int show_num, String tag);
+    List<StorylineEntity> findMoreByOrderHot(int limit_begin, Integer rule,int show_num, String tag);
 
     /**
      * 根据条件查询出故事线列表。按观看次数由大到小排序

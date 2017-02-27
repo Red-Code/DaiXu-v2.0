@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import team.tab.daixu.entity.*;
 import team.tab.daixu.service.*;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 @Controller//该注解用来识别控制器
 @RequestMapping("action")//该注解用来控制url书写时，控制器的选择
 public class ActionController {
+    @Resource(name = "AdvService")
     private AdvService advServiceImpl;
     private ArticleDraftService articleDraftServiceImpl;
     private ArticleLabelService articleLabelServiceImpl;
