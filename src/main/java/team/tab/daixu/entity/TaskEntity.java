@@ -3,7 +3,7 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/1/3.
+ * Created by CLY on 2017/2/28.
  */
 @Entity
 @Table(name = "task", schema = "daixu", catalog = "")

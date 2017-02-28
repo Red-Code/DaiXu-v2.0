@@ -82,7 +82,7 @@ public interface StorylineService {
     /**
      * 查找推荐的故事线文章
      * @param storyline_commend_show_num 显示条数
-     * @return 故事线文章列表
+     * @return 故事线文章列表8
      */
     List<StorylineEntity> findMoreRecommend(int storyline_commend_show_num);
 }
