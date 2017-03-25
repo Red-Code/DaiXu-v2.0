@@ -3,54 +3,54 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "medal", schema = "daixu", catalog = "")
 public class MedalEntity {
-    private int medalId;
-    private String medalImg;
-    private String medalName;
-    private String medalContent;
+    private int id;
+    private String img;
+    private String name;
+    private String content;
 
     @Id
-    @Column(name = "medal_id")
-    public int getMedalId() {
-        return medalId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setMedalId(int medalId) {
-        this.medalId = medalId;
-    }
-
-    @Basic
-    @Column(name = "medal_img")
-    public String getMedalImg() {
-        return medalImg;
-    }
-
-    public void setMedalImg(String medalImg) {
-        this.medalImg = medalImg;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "medal_name")
-    public String getMedalName() {
-        return medalName;
+    @Column(name = "img")
+    public String getImg() {
+        return img;
     }
 
-    public void setMedalName(String medalName) {
-        this.medalName = medalName;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Basic
-    @Column(name = "medal_content")
-    public String getMedalContent() {
-        return medalContent;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setMedalContent(String medalContent) {
-        this.medalContent = medalContent;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Basic
+    @Column(name = "content")
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
@@ -60,20 +60,20 @@ public class MedalEntity {
 
         MedalEntity that = (MedalEntity) o;
 
-        if (medalId != that.medalId) return false;
-        if (medalImg != null ? !medalImg.equals(that.medalImg) : that.medalImg != null) return false;
-        if (medalName != null ? !medalName.equals(that.medalName) : that.medalName != null) return false;
-        if (medalContent != null ? !medalContent.equals(that.medalContent) : that.medalContent != null) return false;
+        if (id != that.id) return false;
+        if (img != null ? !img.equals(that.img) : that.img != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = medalId;
-        result = 31 * result + (medalImg != null ? medalImg.hashCode() : 0);
-        result = 31 * result + (medalName != null ? medalName.hashCode() : 0);
-        result = 31 * result + (medalContent != null ? medalContent.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
         return result;
     }
 }

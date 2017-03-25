@@ -10,27 +10,7 @@ import java.util.List;
  */
 public class ContinueDaoImpl implements ContinueDao {
     @Override
-    public void save(ContinueEntity continueEntity) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(ContinueEntity continueEntity) {
-
-    }
-
-    @Override
-    public ContinueEntity findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<ContinueEntity> findByHeadId(int head_id) {
+    public Boolean save(ContinueEntity continueEntity) {
         return null;
     }
 }

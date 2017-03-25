@@ -12,8 +12,8 @@
     <context:component-scan base-package="team.tab.daixu" />
 
     <!--注册一个UserDaoImpl对象，实例名为“userDaoImpl”-->
-    <bean id="userDaoImpl" class="team.tab.daixu.dao.impl.UserDaoImpl"/>
+    <bean id="articleDaoImpl" class="team.tab.daixu.dao.impl.ArticleDaoImpl"/>
 
     <!--注册一个UserServiceImpl对象，实例名为“userServiceImpl”-->
-    <bean id="userServiceImpl" class="team.tab.daixu.service.impl.UserServiceImpl"/>
+    <bean id="articleServiceImpl" class="team.tab.daixu.service.impl.ArticleServiceImpl"/>
 </beans>

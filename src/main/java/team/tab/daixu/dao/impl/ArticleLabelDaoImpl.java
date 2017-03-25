@@ -10,12 +10,7 @@ import java.util.List;
  */
 public class ArticleLabelDaoImpl implements ArticleLabelDao {
     @Override
-    public List<ArticleLabelEntity> findByArticleId(int atricle_id) {
-        return null;
-    }
-
-    @Override
-    public List<ArticleLabelEntity> findByLable(String lable_name) {
+    public Boolean act_save(int article_id, String[] array_label) {
         return null;
     }
 }

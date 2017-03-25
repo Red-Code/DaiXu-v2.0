@@ -3,43 +3,43 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "adv", schema = "daixu", catalog = "")
 public class AdvEntity {
-    private int advId;
-    private String advImg;
-    private String advUrl;
+    private int id;
+    private String img;
+    private String url;
 
     @Id
-    @Column(name = "adv_id")
-    public int getAdvId() {
-        return advId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setAdvId(int advId) {
-        this.advId = advId;
-    }
-
-    @Basic
-    @Column(name = "adv_img")
-    public String getAdvImg() {
-        return advImg;
-    }
-
-    public void setAdvImg(String advImg) {
-        this.advImg = advImg;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "adv_url")
-    public String getAdvUrl() {
-        return advUrl;
+    @Column(name = "img")
+    public String getImg() {
+        return img;
     }
 
-    public void setAdvUrl(String advUrl) {
-        this.advUrl = advUrl;
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -49,18 +49,18 @@ public class AdvEntity {
 
         AdvEntity advEntity = (AdvEntity) o;
 
-        if (advId != advEntity.advId) return false;
-        if (advImg != null ? !advImg.equals(advEntity.advImg) : advEntity.advImg != null) return false;
-        if (advUrl != null ? !advUrl.equals(advEntity.advUrl) : advEntity.advUrl != null) return false;
+        if (id != advEntity.id) return false;
+        if (img != null ? !img.equals(advEntity.img) : advEntity.img != null) return false;
+        if (url != null ? !url.equals(advEntity.url) : advEntity.url != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = advId;
-        result = 31 * result + (advImg != null ? advImg.hashCode() : 0);
-        result = 31 * result + (advUrl != null ? advUrl.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
 }

@@ -4,54 +4,54 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "article_draft", schema = "daixu", catalog = "")
 public class ArticleDraftEntity {
-    private int draftId;
-    private String draftContent;
-    private Timestamp draftTime;
-    private int draftAuthor;
+    private int id;
+    private String content;
+    private Timestamp time;
+    private int author;
 
     @Id
-    @Column(name = "draft_id")
-    public int getDraftId() {
-        return draftId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setDraftId(int draftId) {
-        this.draftId = draftId;
-    }
-
-    @Basic
-    @Column(name = "draft_content")
-    public String getDraftContent() {
-        return draftContent;
-    }
-
-    public void setDraftContent(String draftContent) {
-        this.draftContent = draftContent;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "draft_time")
-    public Timestamp getDraftTime() {
-        return draftTime;
+    @Column(name = "content")
+    public String getContent() {
+        return content;
     }
 
-    public void setDraftTime(Timestamp draftTime) {
-        this.draftTime = draftTime;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Basic
-    @Column(name = "draft_author")
-    public int getDraftAuthor() {
-        return draftAuthor;
+    @Column(name = "time")
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setDraftAuthor(int draftAuthor) {
-        this.draftAuthor = draftAuthor;
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    @Basic
+    @Column(name = "author")
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
     }
 
     @Override
@@ -61,20 +61,20 @@ public class ArticleDraftEntity {
 
         ArticleDraftEntity that = (ArticleDraftEntity) o;
 
-        if (draftId != that.draftId) return false;
-        if (draftAuthor != that.draftAuthor) return false;
-        if (draftContent != null ? !draftContent.equals(that.draftContent) : that.draftContent != null) return false;
-        if (draftTime != null ? !draftTime.equals(that.draftTime) : that.draftTime != null) return false;
+        if (id != that.id) return false;
+        if (author != that.author) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        if (time != null ? !time.equals(that.time) : that.time != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = draftId;
-        result = 31 * result + (draftContent != null ? draftContent.hashCode() : 0);
-        result = 31 * result + (draftTime != null ? draftTime.hashCode() : 0);
-        result = 31 * result + draftAuthor;
+        int result = id;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + author;
         return result;
     }
 }

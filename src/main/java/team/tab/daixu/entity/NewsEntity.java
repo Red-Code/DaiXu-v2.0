@@ -3,65 +3,65 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "news", schema = "daixu", catalog = "")
 public class NewsEntity {
-    private int newsId;
-    private int newsSend;
-    private int newsReceive;
-    private String newsContent;
-    private String newsGet;
+    private int id;
+    private int send;
+    private int receive;
+    private String content;
+    private String get;
 
     @Id
-    @Column(name = "news_id")
-    public int getNewsId() {
-        return newsId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setNewsId(int newsId) {
-        this.newsId = newsId;
-    }
-
-    @Basic
-    @Column(name = "news_send")
-    public int getNewsSend() {
-        return newsSend;
-    }
-
-    public void setNewsSend(int newsSend) {
-        this.newsSend = newsSend;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "news_receive")
-    public int getNewsReceive() {
-        return newsReceive;
+    @Column(name = "send")
+    public int getSend() {
+        return send;
     }
 
-    public void setNewsReceive(int newsReceive) {
-        this.newsReceive = newsReceive;
-    }
-
-    @Basic
-    @Column(name = "news_content")
-    public String getNewsContent() {
-        return newsContent;
-    }
-
-    public void setNewsContent(String newsContent) {
-        this.newsContent = newsContent;
+    public void setSend(int send) {
+        this.send = send;
     }
 
     @Basic
-    @Column(name = "news_get")
-    public String getNewsGet() {
-        return newsGet;
+    @Column(name = "receive")
+    public int getReceive() {
+        return receive;
     }
 
-    public void setNewsGet(String newsGet) {
-        this.newsGet = newsGet;
+    public void setReceive(int receive) {
+        this.receive = receive;
+    }
+
+    @Basic
+    @Column(name = "content")
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Basic
+    @Column(name = "get")
+    public String getGet() {
+        return get;
+    }
+
+    public void setGet(String get) {
+        this.get = get;
     }
 
     @Override
@@ -71,22 +71,22 @@ public class NewsEntity {
 
         NewsEntity that = (NewsEntity) o;
 
-        if (newsId != that.newsId) return false;
-        if (newsSend != that.newsSend) return false;
-        if (newsReceive != that.newsReceive) return false;
-        if (newsContent != null ? !newsContent.equals(that.newsContent) : that.newsContent != null) return false;
-        if (newsGet != null ? !newsGet.equals(that.newsGet) : that.newsGet != null) return false;
+        if (id != that.id) return false;
+        if (send != that.send) return false;
+        if (receive != that.receive) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        if (get != null ? !get.equals(that.get) : that.get != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = newsId;
-        result = 31 * result + newsSend;
-        result = 31 * result + newsReceive;
-        result = 31 * result + (newsContent != null ? newsContent.hashCode() : 0);
-        result = 31 * result + (newsGet != null ? newsGet.hashCode() : 0);
+        int result = id;
+        result = 31 * result + send;
+        result = 31 * result + receive;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (get != null ? get.hashCode() : 0);
         return result;
     }
 }

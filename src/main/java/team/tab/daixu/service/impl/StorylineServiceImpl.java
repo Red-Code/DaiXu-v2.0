@@ -48,7 +48,7 @@ public class StorylineServiceImpl implements StorylineService {
         FileUtils.copyInputStreamToFile(file.getInputStream(), f);
 
         //将封面图url装到持久化类里面
-        storylineEntity.setStorylineSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
+        storylineEntity.setSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
         StorylineEntity result_save = storylineDaoImpl.save(storylineEntity);
 
         return result_save;

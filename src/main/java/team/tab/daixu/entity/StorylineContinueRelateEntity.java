@@ -3,14 +3,14 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "storyline_continue_relate", schema = "daixu", catalog = "")
 public class StorylineContinueRelateEntity {
     private int id;
-    private Integer storylineContinueFrontId;
-    private Integer storylineContinueBackId;
+    private Integer frontId;
+    private Integer backId;
 
     @Id
     @Column(name = "id")
@@ -23,23 +23,23 @@ public class StorylineContinueRelateEntity {
     }
 
     @Basic
-    @Column(name = "storyline_continue_front_id")
-    public Integer getStorylineContinueFrontId() {
-        return storylineContinueFrontId;
+    @Column(name = "front_id")
+    public Integer getFrontId() {
+        return frontId;
     }
 
-    public void setStorylineContinueFrontId(Integer storylineContinueFrontId) {
-        this.storylineContinueFrontId = storylineContinueFrontId;
+    public void setFrontId(Integer frontId) {
+        this.frontId = frontId;
     }
 
     @Basic
-    @Column(name = "storyline_continue_back_id")
-    public Integer getStorylineContinueBackId() {
-        return storylineContinueBackId;
+    @Column(name = "back_id")
+    public Integer getBackId() {
+        return backId;
     }
 
-    public void setStorylineContinueBackId(Integer storylineContinueBackId) {
-        this.storylineContinueBackId = storylineContinueBackId;
+    public void setBackId(Integer backId) {
+        this.backId = backId;
     }
 
     @Override
@@ -50,10 +50,8 @@ public class StorylineContinueRelateEntity {
         StorylineContinueRelateEntity that = (StorylineContinueRelateEntity) o;
 
         if (id != that.id) return false;
-        if (storylineContinueFrontId != null ? !storylineContinueFrontId.equals(that.storylineContinueFrontId) : that.storylineContinueFrontId != null)
-            return false;
-        if (storylineContinueBackId != null ? !storylineContinueBackId.equals(that.storylineContinueBackId) : that.storylineContinueBackId != null)
-            return false;
+        if (frontId != null ? !frontId.equals(that.frontId) : that.frontId != null) return false;
+        if (backId != null ? !backId.equals(that.backId) : that.backId != null) return false;
 
         return true;
     }
@@ -61,8 +59,8 @@ public class StorylineContinueRelateEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (storylineContinueFrontId != null ? storylineContinueFrontId.hashCode() : 0);
-        result = 31 * result + (storylineContinueBackId != null ? storylineContinueBackId.hashCode() : 0);
+        result = 31 * result + (frontId != null ? frontId.hashCode() : 0);
+        result = 31 * result + (backId != null ? backId.hashCode() : 0);
         return result;
     }
 }

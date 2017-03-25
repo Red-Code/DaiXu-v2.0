@@ -18,15 +18,15 @@ import java.util.ArrayList;
 @Controller//该注解用来识别控制器
 @RequestMapping("action")//该注解用来控制url书写时，控制器的选择
 public class ActionController {
-    @Resource(name = "AdvService")
     private AdvService advServiceImpl;
     private ArticleDraftService articleDraftServiceImpl;
     private ArticleLabelService articleLabelServiceImpl;
+    @Resource(name = "articleServiceImpl")
     private ArticleService articleServiceImpl;
     private CollectionService collectionServiceImpl;
     private ContinueService continueServiceImpl;
     private NewsService newsServiceImpl;
-    private NoticeService noticeServiceImpl;
+//    private NoticeService noticeServiceImpl;
     private ReplyService replyServiceImpl;
     private StorylineCommentService storylineCommentServiceImpl;
     private StorylineContinueRelateService storylineContinueRelateServiceImpl;
@@ -34,10 +34,18 @@ public class ActionController {
     private StorylineLabelService storylineLabelServiceImpl;
     private StorylineService storylineServiceImpl;
     private UserService userServiceImpl;
-    private JoinArticleContinueService joinArticleContinueServiceImpl;
-    private JoinArticleContinueUserService joinArticleContinueUserServiceImpl;
-    private JoinContinueUserService joinContinueUserServiceImpl;
-    private JoinStorylineCommentUserService joinStorylineCommentUserServiceImpl;
+
+    /**
+     * 测试控制器
+     * @return
+     */
+    @RequestMapping(value = "/demo",method = RequestMethod.GET)
+    @ResponseBody
+    public String demo(){
+        ArticleEntity result = articleServiceImpl.findOneById(1);
+
+        return null;
+    }
 
     /**
      * 注册用户
@@ -54,9 +62,9 @@ public class ActionController {
             @RequestParam(value = "user_email")String get_email
     ) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(get_user_name);
-        userEntity.setUserPassword(get_password);
-        userEntity.setUserEmail(get_email);
+        userEntity.setName(get_user_name);
+        userEntity.setPassword(get_password);
+        userEntity.setEmail(get_email);
 
         Boolean register_result = userServiceImpl.save(userEntity);
 
@@ -119,11 +127,11 @@ public class ActionController {
             @CookieValue("user_id")int get_author_id
     ){
         ArticleEntity articleEntity = new ArticleEntity();
-        articleEntity.setArticleName(get_article_name);
-        articleEntity.setArticleRule(get_article_rule);
-        articleEntity.setArticleContent(get_article_content);
-        articleEntity.setArticleJurisdiction(get_article_jurisdiction);
-        articleEntity.setArticleAuthor(get_author_id);
+        articleEntity.setName(get_article_name);
+        articleEntity.setRule(get_article_rule);
+        articleEntity.setContent(get_article_content);
+        articleEntity.setJurisdiction(get_article_jurisdiction);
+        articleEntity.setAuthor(get_author_id);
 
         boolean flag = true;
         ArticleEntity result_article_entity = null;
@@ -138,7 +146,7 @@ public class ActionController {
         }
 
         if (flag){
-            Boolean result_save_label = articleLabelServiceImpl.actSave(result_article_entity.getArticleId(),get_article_label);
+            Boolean result_save_label = articleLabelServiceImpl.actSave(result_article_entity.getId(),get_article_label);
 
             return String.valueOf(result_save_label);
         }else {
@@ -178,9 +186,9 @@ public class ActionController {
             @RequestParam(value = "content") String get_continue_content
     ){
         ContinueEntity continueEntity = new ContinueEntity();
-        continueEntity.setContinueHead(get_article_id);
-        continueEntity.setContinueAuthor(get_user_id);
-        continueEntity.setContinueContent(get_continue_content);
+        continueEntity.setHead(get_article_id);
+        continueEntity.setAuthor(get_user_id);
+        continueEntity.setContent(get_continue_content);
 
         Boolean result_save_continue = continueServiceImpl.save(continueEntity);
 
@@ -208,9 +216,9 @@ public class ActionController {
             @RequestParam(value = "storyline_img")MultipartFile get_storyline_img,
             @RequestParam(value = "json_array_continue_item")String get_json_array_continue_item,
             @CookieValue("user_id")int get_user_id
-    ){
+    ) throws Exception {
         StorylineEntity storylineEntity = new StorylineEntity();
-        storylineEntity.setStorylineName(get_storyline_name);
+        storylineEntity.setName(get_storyline_name);
         storylineEntity.setBackground(get_storyline_background);
         storylineEntity.setAuthorId(get_user_id);
 

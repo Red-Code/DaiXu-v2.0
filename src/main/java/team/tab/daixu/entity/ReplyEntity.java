@@ -3,54 +3,54 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "reply", schema = "daixu", catalog = "")
 public class ReplyEntity {
-    private int replyId;
-    private int replyLayer;
-    private String replyContent;
-    private int replyAuthorId;
+    private int id;
+    private int layer;
+    private String content;
+    private int authorId;
 
     @Id
-    @Column(name = "reply_id")
-    public int getReplyId() {
-        return replyId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setReplyId(int replyId) {
-        this.replyId = replyId;
-    }
-
-    @Basic
-    @Column(name = "reply_layer")
-    public int getReplyLayer() {
-        return replyLayer;
-    }
-
-    public void setReplyLayer(int replyLayer) {
-        this.replyLayer = replyLayer;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "reply_content")
-    public String getReplyContent() {
-        return replyContent;
+    @Column(name = "layer")
+    public int getLayer() {
+        return layer;
     }
 
-    public void setReplyContent(String replyContent) {
-        this.replyContent = replyContent;
+    public void setLayer(int layer) {
+        this.layer = layer;
     }
 
     @Basic
-    @Column(name = "reply_author_id")
-    public int getReplyAuthorId() {
-        return replyAuthorId;
+    @Column(name = "content")
+    public String getContent() {
+        return content;
     }
 
-    public void setReplyAuthorId(int replyAuthorId) {
-        this.replyAuthorId = replyAuthorId;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Basic
+    @Column(name = "author_id")
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     @Override
@@ -60,20 +60,20 @@ public class ReplyEntity {
 
         ReplyEntity that = (ReplyEntity) o;
 
-        if (replyId != that.replyId) return false;
-        if (replyLayer != that.replyLayer) return false;
-        if (replyAuthorId != that.replyAuthorId) return false;
-        if (replyContent != null ? !replyContent.equals(that.replyContent) : that.replyContent != null) return false;
+        if (id != that.id) return false;
+        if (layer != that.layer) return false;
+        if (authorId != that.authorId) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = replyId;
-        result = 31 * result + replyLayer;
-        result = 31 * result + (replyContent != null ? replyContent.hashCode() : 0);
-        result = 31 * result + replyAuthorId;
+        int result = id;
+        result = 31 * result + layer;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + authorId;
         return result;
     }
 }

@@ -31,7 +31,6 @@ public class ShowController {
     private CollectionService collectionServiceImpl;
     private ContinueService continueServiceImpl;
     private NewsService newsServiceImpl;
-    private NoticeService noticeServiceImpl;
     private ReplyService replyServiceImpl;
     private StorylineCommentService storylineCommentServiceImpl;
     private StorylineContinueRelateService storylineContinueRelateServiceImpl;
@@ -39,10 +38,6 @@ public class ShowController {
     private StorylineLabelService storylineLabelServiceImpl;
     private StorylineService storylineServiceImpl;
     private UserService userServiceImpl;
-    private JoinArticleContinueService joinArticleContinueServiceImpl;
-    private JoinArticleContinueUserService joinArticleContinueUserServiceImpl;
-    private JoinContinueUserService joinContinueUserServiceImpl;
-    private JoinStorylineCommentUserService joinStorylineCommentUserServiceImpl;
 
     private ModelAndView mv = new ModelAndView();
     /**

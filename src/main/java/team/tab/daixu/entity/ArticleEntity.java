@@ -4,186 +4,186 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "article", schema = "daixu", catalog = "")
 public class ArticleEntity {
-    private int articleId;
-    private String articleName;
-    private int articleAuthor;
-    private String articleRule;
-    private Integer articleJurisdiction;
-    private String articleContent;
-    private Timestamp articleUpdate;
-    private Timestamp articlePublish;
-    private int articlePraise;
-    private int articleTotal;
-    private String articleSurface;
-    private String articleFine;
-    private String articleEnd;
-    private String articleEndName;
-    private String articleEndBrief;
-    private String articleEndSurface;
+    private int id;
+    private String name;
+    private int author;
+    private String rule;
+    private Integer jurisdiction;
+    private String content;
+    private Timestamp update;
+    private Timestamp publish;
+    private int praise;
+    private int total;
+    private String surface;
+    private String fine;
+    private String end;
+    private String endName;
+    private String endBrief;
+    private String endSurface;
 
     @Id
-    @Column(name = "article_id")
-    public int getArticleId() {
-        return articleId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
-    }
-
-    @Basic
-    @Column(name = "article_name")
-    public String getArticleName() {
-        return articleName;
-    }
-
-    public void setArticleName(String articleName) {
-        this.articleName = articleName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "article_author")
-    public int getArticleAuthor() {
-        return articleAuthor;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setArticleAuthor(int articleAuthor) {
-        this.articleAuthor = articleAuthor;
-    }
-
-    @Basic
-    @Column(name = "article_rule")
-    public String getArticleRule() {
-        return articleRule;
-    }
-
-    public void setArticleRule(String articleRule) {
-        this.articleRule = articleRule;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
-    @Column(name = "article_jurisdiction")
-    public Integer getArticleJurisdiction() {
-        return articleJurisdiction;
+    @Column(name = "author")
+    public int getAuthor() {
+        return author;
     }
 
-    public void setArticleJurisdiction(Integer articleJurisdiction) {
-        this.articleJurisdiction = articleJurisdiction;
-    }
-
-    @Basic
-    @Column(name = "article_content")
-    public String getArticleContent() {
-        return articleContent;
-    }
-
-    public void setArticleContent(String articleContent) {
-        this.articleContent = articleContent;
+    public void setAuthor(int author) {
+        this.author = author;
     }
 
     @Basic
-    @Column(name = "article_update")
-    public Timestamp getArticleUpdate() {
-        return articleUpdate;
+    @Column(name = "rule")
+    public String getRule() {
+        return rule;
     }
 
-    public void setArticleUpdate(Timestamp articleUpdate) {
-        this.articleUpdate = articleUpdate;
-    }
-
-    @Basic
-    @Column(name = "article_publish")
-    public Timestamp getArticlePublish() {
-        return articlePublish;
-    }
-
-    public void setArticlePublish(Timestamp articlePublish) {
-        this.articlePublish = articlePublish;
+    public void setRule(String rule) {
+        this.rule = rule;
     }
 
     @Basic
-    @Column(name = "article_praise")
-    public int getArticlePraise() {
-        return articlePraise;
+    @Column(name = "jurisdiction")
+    public Integer getJurisdiction() {
+        return jurisdiction;
     }
 
-    public void setArticlePraise(int articlePraise) {
-        this.articlePraise = articlePraise;
-    }
-
-    @Basic
-    @Column(name = "article_total")
-    public int getArticleTotal() {
-        return articleTotal;
-    }
-
-    public void setArticleTotal(int articleTotal) {
-        this.articleTotal = articleTotal;
+    public void setJurisdiction(Integer jurisdiction) {
+        this.jurisdiction = jurisdiction;
     }
 
     @Basic
-    @Column(name = "article_surface")
-    public String getArticleSurface() {
-        return articleSurface;
+    @Column(name = "content")
+    public String getContent() {
+        return content;
     }
 
-    public void setArticleSurface(String articleSurface) {
-        this.articleSurface = articleSurface;
-    }
-
-    @Basic
-    @Column(name = "article_fine")
-    public String getArticleFine() {
-        return articleFine;
-    }
-
-    public void setArticleFine(String articleFine) {
-        this.articleFine = articleFine;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Basic
-    @Column(name = "article_end")
-    public String getArticleEnd() {
-        return articleEnd;
+    @Column(name = "update")
+    public Timestamp getUpdate() {
+        return update;
     }
 
-    public void setArticleEnd(String articleEnd) {
-        this.articleEnd = articleEnd;
-    }
-
-    @Basic
-    @Column(name = "article_end_name")
-    public String getArticleEndName() {
-        return articleEndName;
-    }
-
-    public void setArticleEndName(String articleEndName) {
-        this.articleEndName = articleEndName;
+    public void setUpdate(Timestamp update) {
+        this.update = update;
     }
 
     @Basic
-    @Column(name = "article_end_brief")
-    public String getArticleEndBrief() {
-        return articleEndBrief;
+    @Column(name = "publish")
+    public Timestamp getPublish() {
+        return publish;
     }
 
-    public void setArticleEndBrief(String articleEndBrief) {
-        this.articleEndBrief = articleEndBrief;
+    public void setPublish(Timestamp publish) {
+        this.publish = publish;
     }
 
     @Basic
-    @Column(name = "article_end_surface")
-    public String getArticleEndSurface() {
-        return articleEndSurface;
+    @Column(name = "praise")
+    public int getPraise() {
+        return praise;
     }
 
-    public void setArticleEndSurface(String articleEndSurface) {
-        this.articleEndSurface = articleEndSurface;
+    public void setPraise(int praise) {
+        this.praise = praise;
+    }
+
+    @Basic
+    @Column(name = "total")
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    @Basic
+    @Column(name = "surface")
+    public String getSurface() {
+        return surface;
+    }
+
+    public void setSurface(String surface) {
+        this.surface = surface;
+    }
+
+    @Basic
+    @Column(name = "fine")
+    public String getFine() {
+        return fine;
+    }
+
+    public void setFine(String fine) {
+        this.fine = fine;
+    }
+
+    @Basic
+    @Column(name = "end")
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    @Basic
+    @Column(name = "end_name")
+    public String getEndName() {
+        return endName;
+    }
+
+    public void setEndName(String endName) {
+        this.endName = endName;
+    }
+
+    @Basic
+    @Column(name = "end_brief")
+    public String getEndBrief() {
+        return endBrief;
+    }
+
+    public void setEndBrief(String endBrief) {
+        this.endBrief = endBrief;
+    }
+
+    @Basic
+    @Column(name = "end_surface")
+    public String getEndSurface() {
+        return endSurface;
+    }
+
+    public void setEndSurface(String endSurface) {
+        this.endSurface = endSurface;
     }
 
     @Override
@@ -193,52 +193,44 @@ public class ArticleEntity {
 
         ArticleEntity that = (ArticleEntity) o;
 
-        if (articleId != that.articleId) return false;
-        if (articleAuthor != that.articleAuthor) return false;
-        if (articlePraise != that.articlePraise) return false;
-        if (articleTotal != that.articleTotal) return false;
-        if (articleName != null ? !articleName.equals(that.articleName) : that.articleName != null) return false;
-        if (articleRule != null ? !articleRule.equals(that.articleRule) : that.articleRule != null) return false;
-        if (articleJurisdiction != null ? !articleJurisdiction.equals(that.articleJurisdiction) : that.articleJurisdiction != null)
-            return false;
-        if (articleContent != null ? !articleContent.equals(that.articleContent) : that.articleContent != null)
-            return false;
-        if (articleUpdate != null ? !articleUpdate.equals(that.articleUpdate) : that.articleUpdate != null)
-            return false;
-        if (articlePublish != null ? !articlePublish.equals(that.articlePublish) : that.articlePublish != null)
-            return false;
-        if (articleSurface != null ? !articleSurface.equals(that.articleSurface) : that.articleSurface != null)
-            return false;
-        if (articleFine != null ? !articleFine.equals(that.articleFine) : that.articleFine != null) return false;
-        if (articleEnd != null ? !articleEnd.equals(that.articleEnd) : that.articleEnd != null) return false;
-        if (articleEndName != null ? !articleEndName.equals(that.articleEndName) : that.articleEndName != null)
-            return false;
-        if (articleEndBrief != null ? !articleEndBrief.equals(that.articleEndBrief) : that.articleEndBrief != null)
-            return false;
-        if (articleEndSurface != null ? !articleEndSurface.equals(that.articleEndSurface) : that.articleEndSurface != null)
-            return false;
+        if (id != that.id) return false;
+        if (author != that.author) return false;
+        if (praise != that.praise) return false;
+        if (total != that.total) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (rule != null ? !rule.equals(that.rule) : that.rule != null) return false;
+        if (jurisdiction != null ? !jurisdiction.equals(that.jurisdiction) : that.jurisdiction != null) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        if (update != null ? !update.equals(that.update) : that.update != null) return false;
+        if (publish != null ? !publish.equals(that.publish) : that.publish != null) return false;
+        if (surface != null ? !surface.equals(that.surface) : that.surface != null) return false;
+        if (fine != null ? !fine.equals(that.fine) : that.fine != null) return false;
+        if (end != null ? !end.equals(that.end) : that.end != null) return false;
+        if (endName != null ? !endName.equals(that.endName) : that.endName != null) return false;
+        if (endBrief != null ? !endBrief.equals(that.endBrief) : that.endBrief != null) return false;
+        if (endSurface != null ? !endSurface.equals(that.endSurface) : that.endSurface != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = articleId;
-        result = 31 * result + (articleName != null ? articleName.hashCode() : 0);
-        result = 31 * result + articleAuthor;
-        result = 31 * result + (articleRule != null ? articleRule.hashCode() : 0);
-        result = 31 * result + (articleJurisdiction != null ? articleJurisdiction.hashCode() : 0);
-        result = 31 * result + (articleContent != null ? articleContent.hashCode() : 0);
-        result = 31 * result + (articleUpdate != null ? articleUpdate.hashCode() : 0);
-        result = 31 * result + (articlePublish != null ? articlePublish.hashCode() : 0);
-        result = 31 * result + articlePraise;
-        result = 31 * result + articleTotal;
-        result = 31 * result + (articleSurface != null ? articleSurface.hashCode() : 0);
-        result = 31 * result + (articleFine != null ? articleFine.hashCode() : 0);
-        result = 31 * result + (articleEnd != null ? articleEnd.hashCode() : 0);
-        result = 31 * result + (articleEndName != null ? articleEndName.hashCode() : 0);
-        result = 31 * result + (articleEndBrief != null ? articleEndBrief.hashCode() : 0);
-        result = 31 * result + (articleEndSurface != null ? articleEndSurface.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + author;
+        result = 31 * result + (rule != null ? rule.hashCode() : 0);
+        result = 31 * result + (jurisdiction != null ? jurisdiction.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (update != null ? update.hashCode() : 0);
+        result = 31 * result + (publish != null ? publish.hashCode() : 0);
+        result = 31 * result + praise;
+        result = 31 * result + total;
+        result = 31 * result + (surface != null ? surface.hashCode() : 0);
+        result = 31 * result + (fine != null ? fine.hashCode() : 0);
+        result = 31 * result + (end != null ? end.hashCode() : 0);
+        result = 31 * result + (endName != null ? endName.hashCode() : 0);
+        result = 31 * result + (endBrief != null ? endBrief.hashCode() : 0);
+        result = 31 * result + (endSurface != null ? endSurface.hashCode() : 0);
         return result;
     }
 }

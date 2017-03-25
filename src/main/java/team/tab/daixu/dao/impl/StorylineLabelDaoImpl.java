@@ -10,12 +10,7 @@ import java.util.List;
  */
 public class StorylineLabelDaoImpl implements StorylineLabelDao {
     @Override
-    public List<StorylineLabelEntity> findByStorylineId(int storyline_id) {
-        return null;
-    }
-
-    @Override
-    public List<StorylineLabelEntity> findByLable(String lable_name) {
+    public Boolean save(int storyline_id, String[] array_storyline_label) {
         return null;
     }
 }

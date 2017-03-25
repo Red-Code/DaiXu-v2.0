@@ -10,27 +10,57 @@ import java.util.List;
  */
 public class StorylineDaoImpl implements StorylineDao {
     @Override
-    public void save(StorylineEntity storylineEntity) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(StorylineEntity storylineEntity) {
-
-    }
-
-    @Override
-    public StorylineEntity findById(int id) {
+    public StorylineEntity save(StorylineEntity storylineEntity) {
         return null;
     }
 
     @Override
-    public List<StorylineEntity> findAll() {
+    public Boolean update(StorylineEntity storylineEntity) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderNews(int limit_begin, Integer rule, int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderNews(int limit_begin, Integer rule, int show_num, String tag) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderNews(Integer user_id, int limit_begin, int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderHot(int limit_begin, Integer rule, int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderHot(int limit_begin, Integer rule, int show_num, String tag) {
+        return null;
+    }
+
+    @Override
+    public List<StorylineEntity> findMoreByOrderHot(int storyline_commend_show_num) {
+        return null;
+    }
+
+    @Override
+    public int findSumByCount() {
+        return 0;
+    }
+
+    @Override
+    public int findSumByCount(Integer user_id) {
+        return 0;
+    }
+
+    @Override
+    public StorylineEntity findOneById(Integer storyline_id) {
         return null;
     }
 }

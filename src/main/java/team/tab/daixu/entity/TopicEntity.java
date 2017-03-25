@@ -4,54 +4,54 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "topic", schema = "daixu", catalog = "")
 public class TopicEntity {
-    private int topicId;
-    private String topicName;
-    private Date topicData;
-    private String topicUrl;
+    private int id;
+    private String name;
+    private Date data;
+    private String url;
 
     @Id
-    @Column(name = "topic_id")
-    public int getTopicId() {
-        return topicId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
-    }
-
-    @Basic
-    @Column(name = "topic_name")
-    public String getTopicName() {
-        return topicName;
-    }
-
-    public void setTopicName(String topicName) {
-        this.topicName = topicName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "topic_data")
-    public Date getTopicData() {
-        return topicData;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setTopicData(Date topicData) {
-        this.topicData = topicData;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
-    @Column(name = "topic_url")
-    public String getTopicUrl() {
-        return topicUrl;
+    @Column(name = "data")
+    public Date getData() {
+        return data;
     }
 
-    public void setTopicUrl(String topicUrl) {
-        this.topicUrl = topicUrl;
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -61,20 +61,20 @@ public class TopicEntity {
 
         TopicEntity that = (TopicEntity) o;
 
-        if (topicId != that.topicId) return false;
-        if (topicName != null ? !topicName.equals(that.topicName) : that.topicName != null) return false;
-        if (topicData != null ? !topicData.equals(that.topicData) : that.topicData != null) return false;
-        if (topicUrl != null ? !topicUrl.equals(that.topicUrl) : that.topicUrl != null) return false;
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (data != null ? !data.equals(that.data) : that.data != null) return false;
+        if (url != null ? !url.equals(that.url) : that.url != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = topicId;
-        result = 31 * result + (topicName != null ? topicName.hashCode() : 0);
-        result = 31 * result + (topicData != null ? topicData.hashCode() : 0);
-        result = 31 * result + (topicUrl != null ? topicUrl.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
 }

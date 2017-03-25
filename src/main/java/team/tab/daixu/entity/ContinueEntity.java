@@ -4,98 +4,98 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "continue", schema = "daixu", catalog = "")
 public class ContinueEntity {
-    private int continueId;
-    private int continueHead;
-    private String continueContent;
-    private String continueImg;
-    private Timestamp continueTime;
-    private int continueAuthor;
-    private int continuePraise;
-    private int continueComment;
+    private int id;
+    private int head;
+    private String content;
+    private String img;
+    private Timestamp time;
+    private int author;
+    private int praise;
+    private int comment;
 
     @Id
-    @Column(name = "continue_id")
-    public int getContinueId() {
-        return continueId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setContinueId(int continueId) {
-        this.continueId = continueId;
-    }
-
-    @Basic
-    @Column(name = "continue_head")
-    public int getContinueHead() {
-        return continueHead;
-    }
-
-    public void setContinueHead(int continueHead) {
-        this.continueHead = continueHead;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "continue_content")
-    public String getContinueContent() {
-        return continueContent;
+    @Column(name = "head")
+    public int getHead() {
+        return head;
     }
 
-    public void setContinueContent(String continueContent) {
-        this.continueContent = continueContent;
-    }
-
-    @Basic
-    @Column(name = "continue_img")
-    public String getContinueImg() {
-        return continueImg;
-    }
-
-    public void setContinueImg(String continueImg) {
-        this.continueImg = continueImg;
+    public void setHead(int head) {
+        this.head = head;
     }
 
     @Basic
-    @Column(name = "continue_time")
-    public Timestamp getContinueTime() {
-        return continueTime;
+    @Column(name = "content")
+    public String getContent() {
+        return content;
     }
 
-    public void setContinueTime(Timestamp continueTime) {
-        this.continueTime = continueTime;
-    }
-
-    @Basic
-    @Column(name = "continue_author")
-    public int getContinueAuthor() {
-        return continueAuthor;
-    }
-
-    public void setContinueAuthor(int continueAuthor) {
-        this.continueAuthor = continueAuthor;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Basic
-    @Column(name = "continue_praise")
-    public int getContinuePraise() {
-        return continuePraise;
+    @Column(name = "img")
+    public String getImg() {
+        return img;
     }
 
-    public void setContinuePraise(int continuePraise) {
-        this.continuePraise = continuePraise;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Basic
-    @Column(name = "continue_comment")
-    public int getContinueComment() {
-        return continueComment;
+    @Column(name = "time")
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setContinueComment(int continueComment) {
-        this.continueComment = continueComment;
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    @Basic
+    @Column(name = "author")
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
+    }
+
+    @Basic
+    @Column(name = "praise")
+    public int getPraise() {
+        return praise;
+    }
+
+    public void setPraise(int praise) {
+        this.praise = praise;
+    }
+
+    @Basic
+    @Column(name = "comment")
+    public int getComment() {
+        return comment;
+    }
+
+    public void setComment(int comment) {
+        this.comment = comment;
     }
 
     @Override
@@ -105,29 +105,28 @@ public class ContinueEntity {
 
         ContinueEntity that = (ContinueEntity) o;
 
-        if (continueId != that.continueId) return false;
-        if (continueHead != that.continueHead) return false;
-        if (continueAuthor != that.continueAuthor) return false;
-        if (continuePraise != that.continuePraise) return false;
-        if (continueComment != that.continueComment) return false;
-        if (continueContent != null ? !continueContent.equals(that.continueContent) : that.continueContent != null)
-            return false;
-        if (continueImg != null ? !continueImg.equals(that.continueImg) : that.continueImg != null) return false;
-        if (continueTime != null ? !continueTime.equals(that.continueTime) : that.continueTime != null) return false;
+        if (id != that.id) return false;
+        if (head != that.head) return false;
+        if (author != that.author) return false;
+        if (praise != that.praise) return false;
+        if (comment != that.comment) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        if (img != null ? !img.equals(that.img) : that.img != null) return false;
+        if (time != null ? !time.equals(that.time) : that.time != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = continueId;
-        result = 31 * result + continueHead;
-        result = 31 * result + (continueContent != null ? continueContent.hashCode() : 0);
-        result = 31 * result + (continueImg != null ? continueImg.hashCode() : 0);
-        result = 31 * result + (continueTime != null ? continueTime.hashCode() : 0);
-        result = 31 * result + continueAuthor;
-        result = 31 * result + continuePraise;
-        result = 31 * result + continueComment;
+        int result = id;
+        result = 31 * result + head;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + author;
+        result = 31 * result + praise;
+        result = 31 * result + comment;
         return result;
     }
 }

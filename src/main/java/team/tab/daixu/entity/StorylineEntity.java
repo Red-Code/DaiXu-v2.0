@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "storyline", schema = "daixu", catalog = "")
 public class StorylineEntity {
     private int id;
     private int authorId;
-    private String storylineName;
-    private String storylineSurface;
+    private String name;
+    private String surface;
     private Timestamp publishTime;
     private Timestamp updateTime;
     private String background;
@@ -41,23 +41,23 @@ public class StorylineEntity {
     }
 
     @Basic
-    @Column(name = "storyline_name")
-    public String getStorylineName() {
-        return storylineName;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setStorylineName(String storylineName) {
-        this.storylineName = storylineName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
-    @Column(name = "storyline_surface")
-    public String getStorylineSurface() {
-        return storylineSurface;
+    @Column(name = "surface")
+    public String getSurface() {
+        return surface;
     }
 
-    public void setStorylineSurface(String storylineSurface) {
-        this.storylineSurface = storylineSurface;
+    public void setSurface(String surface) {
+        this.surface = surface;
     }
 
     @Basic
@@ -129,10 +129,8 @@ public class StorylineEntity {
 
         if (id != that.id) return false;
         if (authorId != that.authorId) return false;
-        if (storylineName != null ? !storylineName.equals(that.storylineName) : that.storylineName != null)
-            return false;
-        if (storylineSurface != null ? !storylineSurface.equals(that.storylineSurface) : that.storylineSurface != null)
-            return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (surface != null ? !surface.equals(that.surface) : that.surface != null) return false;
         if (publishTime != null ? !publishTime.equals(that.publishTime) : that.publishTime != null) return false;
         if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
         if (background != null ? !background.equals(that.background) : that.background != null) return false;
@@ -147,8 +145,8 @@ public class StorylineEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + authorId;
-        result = 31 * result + (storylineName != null ? storylineName.hashCode() : 0);
-        result = 31 * result + (storylineSurface != null ? storylineSurface.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surface != null ? surface.hashCode() : 0);
         result = 31 * result + (publishTime != null ? publishTime.hashCode() : 0);
         result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
         result = 31 * result + (background != null ? background.hashCode() : 0);

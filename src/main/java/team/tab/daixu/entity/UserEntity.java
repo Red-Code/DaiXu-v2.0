@@ -4,252 +4,252 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "user", schema = "daixu", catalog = "")
 public class UserEntity {
-    private int userId;
-    private String userName;
-    private Integer userJoin;
-    private Integer userFollow;
-    private Integer userFans;
-    private String userImg;
-    private String userBrief;
-    private Integer userSurplusExp;
-    private int userRank;
-    private String userVip;
-    private Integer userExp;
-    private String userAccount;
-    private String userPassword;
-    private String userSex;
-    private Date userBirthday;
-    private String userEmail;
-    private String userPhone;
-    private String userRemindSeek;
-    private String userSetAction;
-    private String userSetFollow;
-    private String userSetFans;
-    private String userSetSee;
+    private int id;
+    private String name;
+    private Integer join;
+    private Integer follow;
+    private Integer fans;
+    private String img;
+    private String brief;
+    private Integer surplusExp;
+    private int rank;
+    private String vip;
+    private Integer exp;
+    private String account;
+    private String password;
+    private String sex;
+    private Date birthday;
+    private String email;
+    private String phone;
+    private String remindSeek;
+    private String setAction;
+    private String setFollow;
+    private String setFans;
+    private String setSee;
 
     @Id
-    @Column(name = "user_id")
-    public int getUserId() {
-        return userId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "user_join")
-    public Integer getUserJoin() {
-        return userJoin;
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setUserJoin(Integer userJoin) {
-        this.userJoin = userJoin;
-    }
-
-    @Basic
-    @Column(name = "user_follow")
-    public Integer getUserFollow() {
-        return userFollow;
-    }
-
-    public void setUserFollow(Integer userFollow) {
-        this.userFollow = userFollow;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
-    @Column(name = "user_fans")
-    public Integer getUserFans() {
-        return userFans;
+    @Column(name = "join")
+    public Integer getJoin() {
+        return join;
     }
 
-    public void setUserFans(Integer userFans) {
-        this.userFans = userFans;
-    }
-
-    @Basic
-    @Column(name = "user_img")
-    public String getUserImg() {
-        return userImg;
-    }
-
-    public void setUserImg(String userImg) {
-        this.userImg = userImg;
+    public void setJoin(Integer join) {
+        this.join = join;
     }
 
     @Basic
-    @Column(name = "user_brief")
-    public String getUserBrief() {
-        return userBrief;
+    @Column(name = "follow")
+    public Integer getFollow() {
+        return follow;
     }
 
-    public void setUserBrief(String userBrief) {
-        this.userBrief = userBrief;
-    }
-
-    @Basic
-    @Column(name = "user_surplus_exp")
-    public Integer getUserSurplusExp() {
-        return userSurplusExp;
-    }
-
-    public void setUserSurplusExp(Integer userSurplusExp) {
-        this.userSurplusExp = userSurplusExp;
+    public void setFollow(Integer follow) {
+        this.follow = follow;
     }
 
     @Basic
-    @Column(name = "user_rank")
-    public int getUserRank() {
-        return userRank;
+    @Column(name = "fans")
+    public Integer getFans() {
+        return fans;
     }
 
-    public void setUserRank(int userRank) {
-        this.userRank = userRank;
-    }
-
-    @Basic
-    @Column(name = "user_vip")
-    public String getUserVip() {
-        return userVip;
-    }
-
-    public void setUserVip(String userVip) {
-        this.userVip = userVip;
+    public void setFans(Integer fans) {
+        this.fans = fans;
     }
 
     @Basic
-    @Column(name = "user_exp")
-    public Integer getUserExp() {
-        return userExp;
+    @Column(name = "img")
+    public String getImg() {
+        return img;
     }
 
-    public void setUserExp(Integer userExp) {
-        this.userExp = userExp;
-    }
-
-    @Basic
-    @Column(name = "user_account")
-    public String getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(String userAccount) {
-        this.userAccount = userAccount;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Basic
-    @Column(name = "user_password")
-    public String getUserPassword() {
-        return userPassword;
+    @Column(name = "brief")
+    public String getBrief() {
+        return brief;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    @Basic
-    @Column(name = "user_sex")
-    public String getUserSex() {
-        return userSex;
-    }
-
-    public void setUserSex(String userSex) {
-        this.userSex = userSex;
+    public void setBrief(String brief) {
+        this.brief = brief;
     }
 
     @Basic
-    @Column(name = "user_birthday")
-    public Date getUserBirthday() {
-        return userBirthday;
+    @Column(name = "surplus_exp")
+    public Integer getSurplusExp() {
+        return surplusExp;
     }
 
-    public void setUserBirthday(Date userBirthday) {
-        this.userBirthday = userBirthday;
-    }
-
-    @Basic
-    @Column(name = "user_email")
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setSurplusExp(Integer surplusExp) {
+        this.surplusExp = surplusExp;
     }
 
     @Basic
-    @Column(name = "user_phone")
-    public String getUserPhone() {
-        return userPhone;
+    @Column(name = "rank")
+    public int getRank() {
+        return rank;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    @Basic
-    @Column(name = "user_remind_seek")
-    public String getUserRemindSeek() {
-        return userRemindSeek;
-    }
-
-    public void setUserRemindSeek(String userRemindSeek) {
-        this.userRemindSeek = userRemindSeek;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     @Basic
-    @Column(name = "user_set_action")
-    public String getUserSetAction() {
-        return userSetAction;
+    @Column(name = "vip")
+    public String getVip() {
+        return vip;
     }
 
-    public void setUserSetAction(String userSetAction) {
-        this.userSetAction = userSetAction;
-    }
-
-    @Basic
-    @Column(name = "user_set_follow")
-    public String getUserSetFollow() {
-        return userSetFollow;
-    }
-
-    public void setUserSetFollow(String userSetFollow) {
-        this.userSetFollow = userSetFollow;
+    public void setVip(String vip) {
+        this.vip = vip;
     }
 
     @Basic
-    @Column(name = "user_set_fans")
-    public String getUserSetFans() {
-        return userSetFans;
+    @Column(name = "exp")
+    public Integer getExp() {
+        return exp;
     }
 
-    public void setUserSetFans(String userSetFans) {
-        this.userSetFans = userSetFans;
+    public void setExp(Integer exp) {
+        this.exp = exp;
     }
 
     @Basic
-    @Column(name = "user_set_see")
-    public String getUserSetSee() {
-        return userSetSee;
+    @Column(name = "account")
+    public String getAccount() {
+        return account;
     }
 
-    public void setUserSetSee(String userSetSee) {
-        this.userSetSee = userSetSee;
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
+    @Column(name = "sex")
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    @Basic
+    @Column(name = "birthday")
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Basic
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Basic
+    @Column(name = "remind_seek")
+    public String getRemindSeek() {
+        return remindSeek;
+    }
+
+    public void setRemindSeek(String remindSeek) {
+        this.remindSeek = remindSeek;
+    }
+
+    @Basic
+    @Column(name = "set_action")
+    public String getSetAction() {
+        return setAction;
+    }
+
+    public void setSetAction(String setAction) {
+        this.setAction = setAction;
+    }
+
+    @Basic
+    @Column(name = "set_follow")
+    public String getSetFollow() {
+        return setFollow;
+    }
+
+    public void setSetFollow(String setFollow) {
+        this.setFollow = setFollow;
+    }
+
+    @Basic
+    @Column(name = "set_fans")
+    public String getSetFans() {
+        return setFans;
+    }
+
+    public void setSetFans(String setFans) {
+        this.setFans = setFans;
+    }
+
+    @Basic
+    @Column(name = "set_see")
+    public String getSetSee() {
+        return setSee;
+    }
+
+    public void setSetSee(String setSee) {
+        this.setSee = setSee;
     }
 
     @Override
@@ -259,60 +259,56 @@ public class UserEntity {
 
         UserEntity that = (UserEntity) o;
 
-        if (userId != that.userId) return false;
-        if (userRank != that.userRank) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (userJoin != null ? !userJoin.equals(that.userJoin) : that.userJoin != null) return false;
-        if (userFollow != null ? !userFollow.equals(that.userFollow) : that.userFollow != null) return false;
-        if (userFans != null ? !userFans.equals(that.userFans) : that.userFans != null) return false;
-        if (userImg != null ? !userImg.equals(that.userImg) : that.userImg != null) return false;
-        if (userBrief != null ? !userBrief.equals(that.userBrief) : that.userBrief != null) return false;
-        if (userSurplusExp != null ? !userSurplusExp.equals(that.userSurplusExp) : that.userSurplusExp != null)
-            return false;
-        if (userVip != null ? !userVip.equals(that.userVip) : that.userVip != null) return false;
-        if (userExp != null ? !userExp.equals(that.userExp) : that.userExp != null) return false;
-        if (userAccount != null ? !userAccount.equals(that.userAccount) : that.userAccount != null) return false;
-        if (userPassword != null ? !userPassword.equals(that.userPassword) : that.userPassword != null) return false;
-        if (userSex != null ? !userSex.equals(that.userSex) : that.userSex != null) return false;
-        if (userBirthday != null ? !userBirthday.equals(that.userBirthday) : that.userBirthday != null) return false;
-        if (userEmail != null ? !userEmail.equals(that.userEmail) : that.userEmail != null) return false;
-        if (userPhone != null ? !userPhone.equals(that.userPhone) : that.userPhone != null) return false;
-        if (userRemindSeek != null ? !userRemindSeek.equals(that.userRemindSeek) : that.userRemindSeek != null)
-            return false;
-        if (userSetAction != null ? !userSetAction.equals(that.userSetAction) : that.userSetAction != null)
-            return false;
-        if (userSetFollow != null ? !userSetFollow.equals(that.userSetFollow) : that.userSetFollow != null)
-            return false;
-        if (userSetFans != null ? !userSetFans.equals(that.userSetFans) : that.userSetFans != null) return false;
-        if (userSetSee != null ? !userSetSee.equals(that.userSetSee) : that.userSetSee != null) return false;
+        if (id != that.id) return false;
+        if (rank != that.rank) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (join != null ? !join.equals(that.join) : that.join != null) return false;
+        if (follow != null ? !follow.equals(that.follow) : that.follow != null) return false;
+        if (fans != null ? !fans.equals(that.fans) : that.fans != null) return false;
+        if (img != null ? !img.equals(that.img) : that.img != null) return false;
+        if (brief != null ? !brief.equals(that.brief) : that.brief != null) return false;
+        if (surplusExp != null ? !surplusExp.equals(that.surplusExp) : that.surplusExp != null) return false;
+        if (vip != null ? !vip.equals(that.vip) : that.vip != null) return false;
+        if (exp != null ? !exp.equals(that.exp) : that.exp != null) return false;
+        if (account != null ? !account.equals(that.account) : that.account != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (sex != null ? !sex.equals(that.sex) : that.sex != null) return false;
+        if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
+        if (remindSeek != null ? !remindSeek.equals(that.remindSeek) : that.remindSeek != null) return false;
+        if (setAction != null ? !setAction.equals(that.setAction) : that.setAction != null) return false;
+        if (setFollow != null ? !setFollow.equals(that.setFollow) : that.setFollow != null) return false;
+        if (setFans != null ? !setFans.equals(that.setFans) : that.setFans != null) return false;
+        if (setSee != null ? !setSee.equals(that.setSee) : that.setSee != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = userId;
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (userJoin != null ? userJoin.hashCode() : 0);
-        result = 31 * result + (userFollow != null ? userFollow.hashCode() : 0);
-        result = 31 * result + (userFans != null ? userFans.hashCode() : 0);
-        result = 31 * result + (userImg != null ? userImg.hashCode() : 0);
-        result = 31 * result + (userBrief != null ? userBrief.hashCode() : 0);
-        result = 31 * result + (userSurplusExp != null ? userSurplusExp.hashCode() : 0);
-        result = 31 * result + userRank;
-        result = 31 * result + (userVip != null ? userVip.hashCode() : 0);
-        result = 31 * result + (userExp != null ? userExp.hashCode() : 0);
-        result = 31 * result + (userAccount != null ? userAccount.hashCode() : 0);
-        result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
-        result = 31 * result + (userSex != null ? userSex.hashCode() : 0);
-        result = 31 * result + (userBirthday != null ? userBirthday.hashCode() : 0);
-        result = 31 * result + (userEmail != null ? userEmail.hashCode() : 0);
-        result = 31 * result + (userPhone != null ? userPhone.hashCode() : 0);
-        result = 31 * result + (userRemindSeek != null ? userRemindSeek.hashCode() : 0);
-        result = 31 * result + (userSetAction != null ? userSetAction.hashCode() : 0);
-        result = 31 * result + (userSetFollow != null ? userSetFollow.hashCode() : 0);
-        result = 31 * result + (userSetFans != null ? userSetFans.hashCode() : 0);
-        result = 31 * result + (userSetSee != null ? userSetSee.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (join != null ? join.hashCode() : 0);
+        result = 31 * result + (follow != null ? follow.hashCode() : 0);
+        result = 31 * result + (fans != null ? fans.hashCode() : 0);
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + (brief != null ? brief.hashCode() : 0);
+        result = 31 * result + (surplusExp != null ? surplusExp.hashCode() : 0);
+        result = 31 * result + rank;
+        result = 31 * result + (vip != null ? vip.hashCode() : 0);
+        result = 31 * result + (exp != null ? exp.hashCode() : 0);
+        result = 31 * result + (account != null ? account.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (remindSeek != null ? remindSeek.hashCode() : 0);
+        result = 31 * result + (setAction != null ? setAction.hashCode() : 0);
+        result = 31 * result + (setFollow != null ? setFollow.hashCode() : 0);
+        result = 31 * result + (setFans != null ? setFans.hashCode() : 0);
+        result = 31 * result + (setSee != null ? setSee.hashCode() : 0);
         return result;
     }
 }

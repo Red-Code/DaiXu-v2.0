@@ -8,6 +8,7 @@ import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.service.ArticleService;
 import team.tab.daixu.util.StringUtil;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.Properties;
 
@@ -15,6 +16,7 @@ import java.util.Properties;
  * Created by CLY on 2017/1/5.
  */
 public class ArticleServiceImpl implements ArticleService {
+    @Resource(name = "articleDaoImpl")
     private ArticleDao articleDaoImpl;
 
     @Override
@@ -48,7 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
         FileUtils.copyInputStreamToFile(file.getInputStream(), f);
 
         //将封面图url装到持久化类里面
-        articleEntity.setArticleSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
+        articleEntity.setSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
         ArticleEntity result_save = articleDaoImpl.act_save(articleEntity);
 
         return result_save;

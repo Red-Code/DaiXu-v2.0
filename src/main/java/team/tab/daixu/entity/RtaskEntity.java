@@ -3,43 +3,43 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/2/28.
+ * Created by CLY on 2017/3/25.
  */
 @Entity
 @Table(name = "rtask", schema = "daixu", catalog = "")
 public class RtaskEntity {
-    private int rtaskId;
-    private int rtaskTask;
-    private int rtaskUser;
+    private int id;
+    private int task;
+    private int user;
 
     @Id
-    @Column(name = "rtask_id")
-    public int getRtaskId() {
-        return rtaskId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setRtaskId(int rtaskId) {
-        this.rtaskId = rtaskId;
-    }
-
-    @Basic
-    @Column(name = "rtask_task")
-    public int getRtaskTask() {
-        return rtaskTask;
-    }
-
-    public void setRtaskTask(int rtaskTask) {
-        this.rtaskTask = rtaskTask;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "rtask_user")
-    public int getRtaskUser() {
-        return rtaskUser;
+    @Column(name = "task")
+    public int getTask() {
+        return task;
     }
 
-    public void setRtaskUser(int rtaskUser) {
-        this.rtaskUser = rtaskUser;
+    public void setTask(int task) {
+        this.task = task;
+    }
+
+    @Basic
+    @Column(name = "user")
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
     }
 
     @Override
@@ -49,18 +49,18 @@ public class RtaskEntity {
 
         RtaskEntity that = (RtaskEntity) o;
 
-        if (rtaskId != that.rtaskId) return false;
-        if (rtaskTask != that.rtaskTask) return false;
-        if (rtaskUser != that.rtaskUser) return false;
+        if (id != that.id) return false;
+        if (task != that.task) return false;
+        if (user != that.user) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = rtaskId;
-        result = 31 * result + rtaskTask;
-        result = 31 * result + rtaskUser;
+        int result = id;
+        result = 31 * result + task;
+        result = 31 * result + user;
         return result;
     }
 }
