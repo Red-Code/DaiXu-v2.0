@@ -51,4 +51,44 @@ public class ArticleDaoImpl implements ArticleDao {
 
         return null;
     }
+
+    @Override
+    public List<ArticleEntity> findHomepageHeadArticle() {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findArticleNewList(int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findArticleRecommendList(int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByWhere(Integer begin_limit, String order, Integer rule, int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByWhere(Integer begin_limit, String order, Integer rule, int show_num, String tag) {
+        return null;
+    }
+
+    @Override
+    public int findPageSum(int show_num) {
+        return 0;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByUser(Integer user_id, Integer begin_limit, String order, int show_num, int relate_type) {
+        return null;
+    }
+
+    @Override
+    public int findPageSumByUser(Integer user_id, int show_num, int relate_type) {
+        return 0;
+    }
 }

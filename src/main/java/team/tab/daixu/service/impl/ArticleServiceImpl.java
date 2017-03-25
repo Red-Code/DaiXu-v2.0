@@ -10,6 +10,7 @@ import team.tab.daixu.util.StringUtil;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -69,5 +70,45 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public String checkContinue(int user_id, int article_id) {
         return "1";
+    }
+
+    @Override
+    public List<ArticleEntity> findHomepageHeadArticle() {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findArticleNewList(int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findArticleRecommendList(int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num) {
+        return null;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num, String tag) {
+        return null;
+    }
+
+    @Override
+    public int findPageSum(int show_num) {
+        return 0;
+    }
+
+    @Override
+    public List<ArticleEntity> findMoreByUser(Integer user_id, Integer now_page, String order, int show_num, int relate_type) {
+        return null;
+    }
+
+    @Override
+    public int findPageSumByUser(Integer user_id, int show_num, int relate_type) {
+        return 0;
     }
 }

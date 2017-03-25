@@ -26,7 +26,6 @@ public class ActionController {
     private CollectionService collectionServiceImpl;
     private ContinueService continueServiceImpl;
     private NewsService newsServiceImpl;
-//    private NoticeService noticeServiceImpl;
     private ReplyService replyServiceImpl;
     private StorylineCommentService storylineCommentServiceImpl;
     private StorylineContinueRelateService storylineContinueRelateServiceImpl;

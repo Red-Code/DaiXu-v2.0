@@ -13,4 +13,14 @@ public class ContinueDaoImpl implements ContinueDao {
     public Boolean save(ContinueEntity continueEntity) {
         return null;
     }
+
+    @Override
+    public List<ContinueEntity> findMoreByWhere(Integer article_id, Integer begin_lilmit, int show_num) {
+        return null;
+    }
+
+    @Override
+    public int findPageSum(int show_num, int article_id) {
+        return 0;
+    }
 }

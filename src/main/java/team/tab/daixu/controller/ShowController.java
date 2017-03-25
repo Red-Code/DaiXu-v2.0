@@ -52,10 +52,10 @@ public class ShowController {
 
         List<AdvEntity> show_list_advs = advServiceImpl.findAll();
         List<UserEntity> show_list_recommend_author = userServiceImpl.findRecommendAuthor();
-        List<JoinArticleContinueEntity> show_list_head_article = joinArticleContinueServiceImpl.findHomepageHeadArticle();
-        List<JoinArticleContinueUserEntity> show_list_recommend_article = joinArticleContinueUserServiceImpl.findArticleRecommendList(article_commend_show_num);
+        List<ArticleEntity> show_list_head_article = articleServiceImpl.findHomepageHeadArticle();
+        List<ArticleEntity> show_list_recommend_article = articleServiceImpl.findArticleRecommendList(article_commend_show_num);
         List<StorylineEntity> show_list_recommend_storyline = storylineServiceImpl.findMoreRecommend(storyline_commend_show_num);
-        List<JoinArticleContinueUserEntity> show_list_new_article = joinArticleContinueUserServiceImpl.findArticleNewList(article_new_show_num);
+        List<ArticleEntity> show_list_new_article = articleServiceImpl.findArticleNewList(article_new_show_num);
         List<StorylineEntity> show_list_new_storyline = storylineServiceImpl.findMoreByWhere(1,CustomConstent.ORDER_DESC,1,storyline_new_show_num);
 
         mv.setViewName("homepage");//homepage就是视图的名称（homepage.ftl）
@@ -76,8 +76,8 @@ public class ShowController {
      * @param get_tag 按标签查询的“标签”
      * @return 常见接龙分类页
      */
-    @RequestMapping(value = "article",method = RequestMethod.GET)
-    public ModelAndView article(
+    @RequestMapping(value = "article_classify",method = RequestMethod.GET)
+    public ModelAndView article_classify(
             @RequestParam(value = "now_page",required = false) Integer get_now_page,
             @RequestParam(value = "order",required = false) Character get_order,
             @RequestParam(value = "rule",required = false) Integer get_rule,
@@ -111,22 +111,21 @@ public class ShowController {
         }else {
             rule = get_rule;
         }
-        List<JoinArticleContinueUserEntity> show_list_article;
+        List<ArticleEntity> show_list_article;
         if (get_tag==null){
-            show_list_article = joinArticleContinueUserServiceImpl.findMoreByWhere(now_page,order,rule,show_num);
+            show_list_article = articleServiceImpl.findMoreByWhere(now_page,order,rule,show_num);
         }else {
-            show_list_article = joinArticleContinueUserServiceImpl.findMoreByWhere(now_page,order,rule,show_num,get_tag);
+            show_list_article = articleServiceImpl.findMoreByWhere(now_page,order,rule,show_num,get_tag);
         }
 
-        int sum_page = joinArticleContinueUserServiceImpl.findPageSum(show_num);
+        int sum_page = articleServiceImpl.findPageSum(show_num);
 
-        mv.setViewName("article");
+        mv.setViewName("article_classify");
         mv.addObject("order",order);//当前的排序规则
         mv.addObject("rule",rule);//当前权限选择
         mv.addObject("list_article",show_list_article);//展示的文章列表
         mv.addObject("paging_now_page",now_page);//当前页数
         mv.addObject("paging_total_page",sum_page);//目前总页数
-        mv.setViewName("storyline");
         return mv;
     }
 
@@ -137,8 +136,8 @@ public class ShowController {
      * @param get_tag 按标签查询的“标签”
      * @return 故事线分类页
      */
-    @RequestMapping(value = "storyline",method = RequestMethod.GET)
-    public ModelAndView storyline(
+    @RequestMapping(value = "storyline_classify",method = RequestMethod.GET)
+    public ModelAndView storyline_classify(
             @RequestParam(value = "now_page",required = false) Integer get_now_page,
             @RequestParam(value = "order",required = false) Character get_order,
             @RequestParam(value = "rule",required = false) Integer get_rule,
@@ -182,13 +181,12 @@ public class ShowController {
 
         int sum_page = storylineServiceImpl.findPageSum(show_num);
 
-        mv.setViewName("storyline");
+        mv.setViewName("storyline_classify");
         mv.addObject("order",order);//当前的排序规则
         mv.addObject("rule",rule);//当前权限选择
         mv.addObject("list_article",show_list_storyline);//展示的故事线列表
         mv.addObject("paging_now_page",now_page);//当前页数
         mv.addObject("paging_total_page",sum_page);//目前总页数
-        mv.setViewName("storyline");
         return mv;
     }
 
@@ -248,10 +246,10 @@ public class ShowController {
         }
 
         ArticleEntity show_one_article = articleServiceImpl.findOneById(get_article_id);
-        UserEntity show_one_author = userServiceImpl.findOneById(show_one_article.getArticleAuthor());
+        UserEntity show_one_author = userServiceImpl.findOneById(show_one_article.getAuthor());
         String show_article_status = articleServiceImpl.findNowStatus(get_article_id,get_user_id);
-        List<JoinContinueUserEntity> show_list_continue = joinContinueUserServiceImpl.findMoreByWhere(get_article_id,now_page,show_num);
-        int sum_page = joinContinueUserServiceImpl.findPageSum(now_page,get_article_id);
+        List<ContinueEntity> show_list_continue = continueServiceImpl.findMoreByWhere(get_article_id,now_page,show_num);
+        int sum_page = continueServiceImpl.findPageSum(now_page,get_article_id);
 
         mv.setViewName("article");
         mv.addObject("one_article",show_one_article);//该故事的创建信息
@@ -279,7 +277,7 @@ public class ShowController {
 
         StorylineEntity show_one_storyline = storylineServiceImpl.findOneById(get_storyline_id);
         UserEntity show_one_author = userServiceImpl.findOneById(show_one_storyline.getAuthorId());
-        List<JoinStorylineCommentUserEntity> show_list_comment = joinStorylineCommentUserServiceImpl.findMoreByWhere(get_storyline_id, now_page, show_num, time_order);
+        List<StorylineCommentEntity> show_list_comment = storylineCommentServiceImpl.findMoreByWhere(get_storyline_id, now_page, show_num, time_order);
 
         mv.setViewName("storyline");
         mv.addObject("one_storyline",show_one_storyline);//该故事线的主要信息
@@ -321,8 +319,8 @@ public class ShowController {
 
         UserEntity show_user_info = userServiceImpl.findOneById(get_user_id);
         List<UserEntity> show_list_follow = userServiceImpl.findFollowListById(get_user_id);
-        List<JoinArticleContinueUserEntity> show_list_my_article = joinArticleContinueUserServiceImpl.findMoreByUser(get_user_id, now_page, time_order, show_num, relate_type);
-        int sum_page = joinArticleContinueUserServiceImpl.findPageSumByUser(get_user_id,show_num,relate_type);
+        List<ArticleEntity> show_list_my_article = articleServiceImpl.findMoreByUser(get_user_id, now_page, time_order, show_num, relate_type);
+        int sum_page = articleServiceImpl.findPageSumByUser(get_user_id,show_num,relate_type);
 
         mv.setViewName("my_homepage_article");
         mv.addObject("one_user_info",show_user_info);//用户信息

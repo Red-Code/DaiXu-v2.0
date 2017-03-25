@@ -28,4 +28,9 @@ public class StorylineCommentDaoImpl implements StorylineCommentDao {
     public List<StorylineCommentEntity> findByStorylineId(int storyline_id) {
         return null;
     }
+
+    @Override
+    public List<StorylineCommentEntity> findMoreByWhere(int storyline_id, Integer limit_begin, int show_num, String time_order) {
+        return null;
+    }
 }
