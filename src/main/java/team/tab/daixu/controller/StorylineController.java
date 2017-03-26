@@ -1,197 +1,170 @@
 package team.tab.daixu.controller;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import team.tab.daixu.entity.*;
+import org.springframework.web.servlet.ModelAndView;
+import team.tab.daixu.entity.StorylineCommentEntity;
+import team.tab.daixu.entity.StorylineContinueEntity;
+import team.tab.daixu.entity.StorylineEntity;
+import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
+import team.tab.daixu.util.CustomConstent;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by CLY on 2017/1/5.
+ * Created by CLY on 2017/3/25.
+ *
+ * 故事线模块控制器
  */
-@Controller//该注解用来识别控制器
-@RequestMapping("action")//该注解用来控制url书写时，控制器的选择
-public class ActionController {
+@Controller
+@RequestMapping("storyline")
+public class StorylineController {
+    @Resource(name = "advServiceImpl")
     private AdvService advServiceImpl;
+    @Resource(name = "articleDraftServiceImpl")
     private ArticleDraftService articleDraftServiceImpl;
+    @Resource(name = "articleLabelServiceImpl")
     private ArticleLabelService articleLabelServiceImpl;
     @Resource(name = "articleServiceImpl")
     private ArticleService articleServiceImpl;
+    @Resource(name = "collectionServiceImpl")
     private CollectionService collectionServiceImpl;
+    @Resource(name = "continueServiceImpl")
     private ContinueService continueServiceImpl;
+    @Resource(name = "newsServiceImpl")
     private NewsService newsServiceImpl;
+    @Resource(name = "replyServiceImpl")
     private ReplyService replyServiceImpl;
+    @Resource(name = "storylineCommentServiceImpl")
     private StorylineCommentService storylineCommentServiceImpl;
+    @Resource(name = "storylineContinueRelateServiceImpl")
     private StorylineContinueRelateService storylineContinueRelateServiceImpl;
+    @Resource(name = "storylineContinueServiceImpl")
     private StorylineContinueService storylineContinueServiceImpl;
+    @Resource(name = "storylineLabelServiceImpl")
     private StorylineLabelService storylineLabelServiceImpl;
+    @Resource(name = "storylineServiceImpl")
     private StorylineService storylineServiceImpl;
+    @Resource(name = "userServiceImpl")
     private UserService userServiceImpl;
 
-    /**
-     * 测试控制器
-     * @return
-     */
-    @RequestMapping(value = "/demo",method = RequestMethod.GET)
-    @ResponseBody
-    public String demo(){
-        ArticleEntity result = articleServiceImpl.findOneById(1);
+    private ModelAndView mv = new ModelAndView();
 
-        return null;
-    }
 
     /**
-     * 注册用户
-     * @param get_user_name 用户名
-     * @param get_password 用户密码
-     * @param get_email 用户邮箱
-     * @return 字符串类型，true表示成功，false表示失败
+     * @param get_now_page 当前页数，1表示第一页
+     * @param get_order 1表示最新，2表示最热
+     * @param get_rule 1表示全部。2表示二万字以下。3表示二万字到十万字。4表示十万字以上
+     * @param get_tag 按标签查询的“标签”
+     * @return 故事线分类页
      */
-    @RequestMapping(value="/register",method= RequestMethod.GET)
-    @ResponseBody//将内容或对象作为 HTTP 响应正文返回，并调用适合HttpMessageConverter的Adapter转换对象，写入输出流。
-    public String register(
-            @RequestParam(value = "user_name")String get_user_name,
-            @RequestParam(value = "user_password")String get_password,
-            @RequestParam(value = "user_email")String get_email
-    ) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setName(get_user_name);
-        userEntity.setPassword(get_password);
-        userEntity.setEmail(get_email);
-
-        Boolean register_result = userServiceImpl.save(userEntity);
-
-        return String.valueOf(register_result);
-    }
-
-    /**
-     * 登录
-     * @param get_user_email 用户邮箱
-     * @param get_user_password 用户密码
-     * @return 是否登录成功
-     */
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    @ResponseBody
-    public String login(
-            @RequestParam(value = "user_email")String get_user_email,
-            @RequestParam(value = "user_password")String get_user_password
+    @RequestMapping(value = "storyline_classify",method = RequestMethod.GET)
+    public ModelAndView storyline_classify(
+            @RequestParam(value = "now_page",required = false) Integer get_now_page,
+            @RequestParam(value = "order",required = false) Character get_order,
+            @RequestParam(value = "rule",required = false) Integer get_rule,
+            @RequestParam(value = "tag",required = false) String get_tag
     ){
-        Boolean result_login = userServiceImpl.actLogin(get_user_email, get_user_password);
+        final int show_num = 12;
+        final String order;
+        final Integer now_page;
+        final Integer rule;
 
-        return String.valueOf(result_login);
-
-    }
-
-    /**
-     * 退出登录
-     * @param get_user_id 用户id
-     * @return 结果
-     */
-    @RequestMapping(value = "/end_login",method = RequestMethod.GET)
-    @ResponseBody
-    public String end_login(
-            @CookieValue("user_id")int get_user_id
-    ){
-        Boolean result_end_login = userServiceImpl.actEndLogin(get_user_id);
-
-        return String.valueOf(result_end_login);
-    }
-
-    /**
-     * 创建新的接龙文章
-     * @param get_article_name 文章名
-     * @param get_article_label 文章标签（每个标签之间用逗号隔开）
-     * @param get_article_rule 文章规则
-     * @param get_article_img 文章首页图片的文件
-     * @param get_article_content 文章一楼的内容
-     * @param get_article_jurisdiction 文章接龙权限（这是最低等级数，只能由这个等级以上的人接）
-     * @param get_author_id 作者id
-     * @return
-     */
-    @RequestMapping(value = "/publish_article",method = RequestMethod.GET)
-    @ResponseBody
-    public String publish_article(
-            @RequestParam(value = "article_name")String get_article_name,
-            @RequestParam(value = "article_label")String get_article_label,
-            @RequestParam(value = "article_rule")String get_article_rule,
-            @RequestParam(value="article_img")MultipartFile get_article_img,
-            @RequestParam(value = "article_content")String get_article_content,
-            @RequestParam(value = "article_jurisdiction")Integer get_article_jurisdiction,
-            @CookieValue("user_id")int get_author_id
-    ){
-        ArticleEntity articleEntity = new ArticleEntity();
-        articleEntity.setName(get_article_name);
-        articleEntity.setRule(get_article_rule);
-        articleEntity.setContent(get_article_content);
-        articleEntity.setJurisdiction(get_article_jurisdiction);
-        articleEntity.setAuthor(get_author_id);
-
-        boolean flag = true;
-        ArticleEntity result_article_entity = null;
-        try {
-            result_article_entity = articleServiceImpl.save(articleEntity,get_article_img);
-            if (result_article_entity==null){
-                flag = false;
-            }
-        } catch (Exception e) {
-            flag = false;
-            e.printStackTrace();
+        switch (get_order){
+            case '1':
+                order = CustomConstent.ORDER_DESC;
+                break;
+            case '2':
+                order = CustomConstent.ORDER_HOT;
+                break;
+            default:
+                order = CustomConstent.ORDER_DESC;
+                break;
         }
 
-        if (flag){
-            Boolean result_save_label = articleLabelServiceImpl.actSave(result_article_entity.getId(),get_article_label);
-
-            return String.valueOf(result_save_label);
+        if (get_now_page==null){
+            now_page = 1;
         }else {
-            return String.valueOf(false);
+            now_page = get_now_page;
         }
+
+        if (get_rule==null){
+            rule = 1;
+        }else {
+            rule = get_rule;
+        }
+
+        List<StorylineEntity> show_list_storyline;
+        if (get_tag==null){
+            show_list_storyline=storylineServiceImpl.findMoreByWhere(now_page,order,rule,show_num);
+        }else {
+            show_list_storyline=storylineServiceImpl.findMoreByWhere(now_page,order,rule,show_num,get_tag);
+        }
+
+        int sum_page = storylineServiceImpl.findPageSum(show_num);
+
+        mv.setViewName("storyline_classify");
+        mv.addObject("order",order);//当前的排序规则
+        mv.addObject("rule",rule);//当前权限选择
+        mv.addObject("list_article",show_list_storyline);//展示的故事线列表
+        mv.addObject("paging_now_page",now_page);//当前页数
+        mv.addObject("paging_total_page",sum_page);//目前总页数
+        return mv;
+    }
+
+
+    /**
+     * @return 故事线的发布页
+     */
+    @RequestMapping(value = "storyline_publish",method = RequestMethod.GET)
+    public ModelAndView storyline_publish(){
+        mv.setViewName("storyline_publish");
+        return mv;
     }
 
     /**
-     * 检查某用户是否能抢接某文章
-     * @param get_article_id 文章id
-     * @param get_user_id 用户id
-     * @return “1”表示能抢接该文章。“2”表示该文章正在被别人续写不能抢接。“3”表示该用户目前被禁言不能抢接
+     * 故事线续写支线发布页
+     * @param get_storyline_id 被续写的故事线id
+     * @return 故事线续写支线发布页
      */
-    @RequestMapping(value = "/check_continue",method = RequestMethod.GET)
-    @ResponseBody
-    public String check_continue(
-            @RequestParam(value = "article_id")int get_article_id,
-            @CookieValue("user_id")int get_user_id
+    @RequestMapping(value = "storyline_continue_publish",method = RequestMethod.GET)
+    public ModelAndView storyline_continue_publish(
+            @RequestParam(value = "storyline_id")int get_storyline_id
     ){
-        String result_check = articleServiceImpl.checkContinue(get_user_id,get_article_id);
+        List<StorylineContinueEntity> show_storylineContinueEntity = storylineContinueServiceImpl.findNoEndByStorylineId(get_storyline_id);
 
-        return result_check;
+        mv.setViewName("storyline_continue_publish");
+        mv.addObject("list_storyline_continue",show_storylineContinueEntity);
+        return mv;
     }
 
     /**
-     * 发布续写内容
-     * @param get_article_id 被续写文章id
-     * @param get_user_id 发布者id
-     * @param get_continue_content 续写内容
-     * @return 是否成功
+     * 故事线详情页展示
+     * @param get_storyline_id 故事线id
+     * @return
      */
-    @RequestMapping(value = "/publish_continue",method = RequestMethod.GET)
-    @ResponseBody
-    public String publish_continue(
-            @RequestParam(value = "article_id")int get_article_id,
-            @CookieValue("user_id")int get_user_id,
-            @RequestParam(value = "content") String get_continue_content
+    @RequestMapping(value = "storyline",method = RequestMethod.GET)
+    public ModelAndView storyline(
+            @RequestParam(value = "storyline_id")Integer get_storyline_id
     ){
-        ContinueEntity continueEntity = new ContinueEntity();
-        continueEntity.setHead(get_article_id);
-        continueEntity.setAuthor(get_user_id);
-        continueEntity.setContent(get_continue_content);
+        final int now_page = 1;
+        final int show_num = 4;
+        final String time_order = CustomConstent.ORDER_DESC;//从最新的评论开始显示
 
-        Boolean result_save_continue = continueServiceImpl.save(continueEntity);
+        StorylineEntity show_one_storyline = storylineServiceImpl.findOneById(get_storyline_id);
+        UserEntity show_one_author = userServiceImpl.findOneById(show_one_storyline.getAuthorId());
+        List<StorylineCommentEntity> show_list_comment = storylineCommentServiceImpl.findMoreByWhere(get_storyline_id, now_page, show_num, time_order);
 
-        return String.valueOf(result_save_continue);
+        mv.setViewName("storyline");
+        mv.addObject("one_storyline",show_one_storyline);//该故事线的主要信息
+        mv.addObject("one_author",show_one_author);//该故事线创建作者的信息
+        mv.addObject("list_comment",show_list_comment);//评论列表详情
+
+        return mv;
     }
 
     /**
@@ -276,6 +249,7 @@ public class ActionController {
         return String.valueOf(result_storyline_entity.getId());
     }
 
+
     /**
      * 创建某条故事线的支线内容
      * @param get_storyline_id 故事线id
@@ -323,4 +297,5 @@ public class ActionController {
         }
         return String.valueOf(true);
     }
+
 }

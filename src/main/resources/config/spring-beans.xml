@@ -14,6 +14,19 @@
     <!--注册一个UserDaoImpl对象，实例名为“userDaoImpl”-->
     <bean id="articleDaoImpl" class="team.tab.daixu.dao.impl.ArticleDaoImpl"/>
 
-    <!--注册一个UserServiceImpl对象，实例名为“userServiceImpl”-->
+    <!--注册一个XxxxServiceImpl对象，实例名为“xxxxServiceImpl”-->
+    <bean id="advServiceImpl" class="team.tab.daixu.service.impl.AdvServiceImpl"/>
+    <bean id="articleDraftServiceImpl" class="team.tab.daixu.service.impl.ArticleDraftServiceImpl"/>
+    <bean id="articleLabelServiceImpl" class="team.tab.daixu.service.impl.ArticleLabelServiceImpl"/>
     <bean id="articleServiceImpl" class="team.tab.daixu.service.impl.ArticleServiceImpl"/>
+    <bean id="collectionServiceImpl" class="team.tab.daixu.service.impl.CollectionServiceImpl"/>
+    <bean id="continueServiceImpl" class="team.tab.daixu.service.impl.ContinueServiceImpl"/>
+    <bean id="newsServiceImpl" class="team.tab.daixu.service.impl.NewsServiceImpl"/>
+    <bean id="replyServiceImpl" class="team.tab.daixu.service.impl.ReplyServiceImpl"/>
+    <bean id="storylineCommentServiceImpl" class="team.tab.daixu.service.impl.StorylineCommentServiceImpl"/>
+    <bean id="storylineContinueRelateServiceImpl" class="team.tab.daixu.service.impl.StorylineContinueRelateServiceImpl"/>
+    <bean id="storylineContinueServiceImpl" class="team.tab.daixu.service.impl.StorylineContinueServiceImpl"/>
+    <bean id="storylineLabelServiceImpl" class="team.tab.daixu.service.impl.StorylineLabelServiceImpl"/>
+    <bean id="storylineServiceImpl" class="team.tab.daixu.service.impl.StorylineServiceImpl"/>
+    <bean id="userServiceImpl" class="team.tab.daixu.service.impl.UserServiceImpl"/>
 </beans>
