@@ -2,6 +2,7 @@ package team.tab.daixu.service.impl;
 
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
@@ -16,6 +17,7 @@ import java.util.Properties;
 /**
  * Created by CLY on 2017/1/5.
  */
+@Service
 public class ArticleServiceImpl implements ArticleService {
     @Resource(name = "articleDaoImpl")
     private ArticleDao articleDaoImpl;

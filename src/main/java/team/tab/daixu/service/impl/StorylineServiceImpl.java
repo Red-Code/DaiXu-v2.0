@@ -1,6 +1,7 @@
 package team.tab.daixu.service.impl;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.tab.daixu.dao.StorylineDao;
 import team.tab.daixu.entity.ArticleEntity;
@@ -15,6 +16,7 @@ import java.util.Properties;
 /**
  * Created by CLY on 2017/1/5.
  */
+@Service
 public class StorylineServiceImpl implements StorylineService {
     private StorylineDao storylineDaoImpl;
     @Override

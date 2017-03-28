@@ -1,6 +1,7 @@
 package team.tab.daixu.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import team.tab.daixu.dao.UserDao;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.UserService;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * Created by CLY on 2016/12/26.
  */
+@Service
 public class UserServiceImpl implements UserService {
     @Resource(name = "userDaoImpl")
     private UserDao userDaoImpl;

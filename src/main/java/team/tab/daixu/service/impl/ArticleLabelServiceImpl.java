@@ -1,6 +1,7 @@
 package team.tab.daixu.service.impl;
 
 
+import org.springframework.stereotype.Service;
 import team.tab.daixu.dao.ArticleLabelDao;
 import team.tab.daixu.service.ArticleLabelService;
 
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by CLY on 2017/1/5.
  */
+@Service
 public class ArticleLabelServiceImpl implements ArticleLabelService {
     private ArticleLabelDao articleLabelDaoImpl;
 

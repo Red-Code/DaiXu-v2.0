@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.RtaskEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 /**
  * Created by CLY on 2017/1/5.
  */
+@Repository
 public class ArticleDaoImpl implements ArticleDao {
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;//注入sessionFactory

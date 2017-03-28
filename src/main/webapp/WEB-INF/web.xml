@@ -3,27 +3,29 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
-  <display-name>java-springmvc-demo5</display-name>
+  <display-name>daixu-2.0</display-name>
 
-  <!-- 配置Spring -->
+  <!-- 根应用上下文（所有spring都可以使用这个应用上下文） -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:config/spring-*.xml</param-value>
   </context-param>
-  <!--listener用于在Web 应用启动时，启动某些后台程序，此处启动的是spring-->
+  <!--web应用启动时，会启动该listener，从指定的xml中加载和启动“全局上下文环境”-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
-  <!--定义入口类DispatcherServlet-->
+
+  <!--根据url不同，使用DispatcherServlet（派发器）处理请求，之后启动和加载“该spring的应用上下文”-->
   <servlet>
     <servlet-name>springMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
     <!-- 默认的servlet.xml文件是放在WEB-INF目录下，名称与<servlet-name>的名字要相关。但可以通过以下设置重新自定义servlet.xml配置文件的位置和名称。-->
+    <!--启动和加载“该spring的单独应用上下文”-->
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath*:config/spring-mvc.xml</param-value>
+      <param-value></param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -48,6 +50,8 @@
     <filter-name>openSession</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <!-- 注册Spring的request作用域 -->
   <listener>
     <listener-class>
       org.springframework.web.context.request.RequestContextListener
