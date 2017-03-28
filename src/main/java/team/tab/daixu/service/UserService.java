@@ -3,6 +3,8 @@ package team.tab.daixu.service;
 
 import team.tab.daixu.entity.UserEntity;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -37,17 +39,20 @@ public interface UserService {
     List<UserEntity> findFollowListById(Integer user_id);
 
     /**
-     * 登录
+     * 登录，如果登录成功则创建sessionID，将user_id和sessionID都存入cookie
      * @param user_email 用户邮箱
      * @param password 用户密码
+     * @param request //客户端的请求
+     * @param response//服务端的返回内容
      * @return 结果
      */
-    Boolean actLogin(String user_email,String password);
+    Boolean actLogin(String user_email,String password,HttpServletRequest request,HttpServletResponse response);
 
     /**
-     * 使用户退出登录
-     * @param user_id 用户id
-     * @return 操作结果
+     * 使用户退出登录，
+     * @param request 客户端请求对象
+     * @param response 服务端返回对象
+     * @return
      */
-    Boolean actEndLogin(int user_id);
+    Boolean actEndLogin(HttpServletRequest request,HttpServletResponse response);
 }

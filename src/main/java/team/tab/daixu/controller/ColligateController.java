@@ -3,6 +3,7 @@ package team.tab.daixu.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
@@ -59,6 +60,12 @@ public class ColligateController {
 
     private ModelAndView mv = new ModelAndView();
 
+    @RequestMapping(value = "/demo",method = RequestMethod.GET)
+    @ResponseBody
+    public String demo(){
+        return "123";
+    }
+
     /**
      * @return 首页
      */
@@ -87,6 +94,5 @@ public class ColligateController {
         mv.addObject("list_new_storyline",show_list_new_storyline);//最新故事线首部列表
         return mv;
     }
-
 
 }

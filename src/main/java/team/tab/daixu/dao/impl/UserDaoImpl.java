@@ -13,18 +13,18 @@ import java.util.List;
  */
 public class UserDaoImpl implements UserDao {
     @Override
-    public void save(UserEntity userEntity) {
-
+    public Boolean save(UserEntity userEntity) {
+        return null;
     }
 
     @Override
-    public void delete(int id) {
-
+    public Boolean delete(int id) {
+        return null;
     }
 
     @Override
-    public void update(UserEntity userEntity) {
-
+    public Boolean update(UserEntity userEntity) {
+        return null;
     }
 
     @Override
@@ -33,18 +33,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<UserEntity> findAll() {
+    public UserEntity findByEmail(String email) {
         return null;
     }
-
-//    @Resource(name = "sessionFactory")
-//    private SessionFactory sessionFactory;//注入sessionFactory
-//
-//    @Override
-//    public List<UserEntity> select_user() {
-//        String hql = "from UserEntity";//hql语句
-//        Query query = sessionFactory.getCurrentSession().createQuery(hql);
-//
-//        return query.list();
-//    }
 }

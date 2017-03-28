@@ -10,6 +10,9 @@ import team.tab.daixu.service.*;
 import team.tab.daixu.util.CustomConstent;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -61,25 +64,33 @@ public class UserController {
     @ResponseBody
     public String login(
             @RequestParam(value = "user_email")String get_user_email,
-            @RequestParam(value = "user_password")String get_user_password
+            @RequestParam(value = "user_password")String get_user_password,
+            HttpServletRequest request,
+            HttpServletResponse response
     ){
-        Boolean result_login = userServiceImpl.actLogin(get_user_email, get_user_password);
+        Boolean result_login = userServiceImpl.actLogin(get_user_email, get_user_password,request,response);
 
         return String.valueOf(result_login);
 
     }
 
     /**
+
+
+     */
+    /**
      * 退出登录
-     * @param get_user_id 用户id
+     * @param request 请求对象
+     * @param response 返回对象
      * @return 结果
      */
     @RequestMapping(value = "/end_login",method = RequestMethod.GET)
     @ResponseBody
     public String end_login(
-            @CookieValue("user_id")int get_user_id
+            HttpServletRequest request,
+            HttpServletResponse response
     ){
-        Boolean result_end_login = userServiceImpl.actEndLogin(get_user_id);
+        Boolean result_end_login = userServiceImpl.actEndLogin(request,response);
 
         return String.valueOf(result_end_login);
     }

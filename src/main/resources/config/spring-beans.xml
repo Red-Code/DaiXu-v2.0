@@ -13,6 +13,7 @@
 
     <!--注册一个UserDaoImpl对象，实例名为“userDaoImpl”-->
     <bean id="articleDaoImpl" class="team.tab.daixu.dao.impl.ArticleDaoImpl"/>
+    <bean id="userDaoImpl" class="team.tab.daixu.dao.impl.UserDaoImpl"/>
 
     <!--注册一个XxxxServiceImpl对象，实例名为“xxxxServiceImpl”-->
     <bean id="advServiceImpl" class="team.tab.daixu.service.impl.AdvServiceImpl"/>
