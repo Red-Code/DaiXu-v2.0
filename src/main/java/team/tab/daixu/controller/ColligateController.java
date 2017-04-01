@@ -1,10 +1,14 @@
 package team.tab.daixu.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import redis.clients.jedis.ShardedJedis;
+import redis.clients.jedis.ShardedJedisPool;
+import team.tab.daixu.cached.TestCached;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
@@ -60,10 +64,28 @@ public class ColligateController {
 
     private ModelAndView mv = new ModelAndView();
 
-    @RequestMapping(value = "/demo",method = RequestMethod.GET)
+
+    @Autowired
+    private ShardedJedisPool shardedJedisPool;
+
+    @RequestMapping(value = "/demo_set",method = RequestMethod.GET)
     @ResponseBody
-    public String demo(){
-        return "123";
+    public String demo_set(){
+        ShardedJedis shardJedis = shardedJedisPool.getResource();
+        shardJedis.set("key1","hello jedis");
+        shardJedis.close();
+
+        return "set";
+    }
+
+    @RequestMapping(value = "/demo_put",method = RequestMethod.GET)
+    @ResponseBody
+    public String demo_put(){
+        ShardedJedis shardedJedis = shardedJedisPool.getResource();
+        String result = shardedJedis.get("key1");
+        shardedJedis.close();
+
+        return result;
     }
 
     /**

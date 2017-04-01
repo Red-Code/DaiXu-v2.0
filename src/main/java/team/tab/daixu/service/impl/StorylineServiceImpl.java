@@ -7,8 +7,10 @@ import team.tab.daixu.dao.StorylineDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.service.StorylineService;
+import team.tab.daixu.util.Jedis.JedisDataSource;
 import team.tab.daixu.util.StringUtil;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 import java.util.Properties;

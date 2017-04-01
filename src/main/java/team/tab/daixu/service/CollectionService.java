@@ -1,9 +1,5 @@
 package team.tab.daixu.service;
 
-import team.tab.daixu.entity.CollectionEntity;
-
-import java.util.List;
-
 /**
  * Created by CLY on 2017/1/3.
  */
