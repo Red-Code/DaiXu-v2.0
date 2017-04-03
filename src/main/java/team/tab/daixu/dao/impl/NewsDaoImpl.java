@@ -3,7 +3,6 @@ package team.tab.daixu.dao.impl;
 import org.springframework.stereotype.Repository;
 import team.tab.daixu.dao.NewsDao;
 import team.tab.daixu.entity.NewsEntity;
-import team.tab.daixu.util.Jedis.JedisDataSource;
 
 import javax.annotation.Resource;
 import java.util.List;

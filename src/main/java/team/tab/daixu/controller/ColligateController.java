@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.ShardedJedis;
-import redis.clients.jedis.ShardedJedisPool;
-import team.tab.daixu.cached.TestCached;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
 import team.tab.daixu.util.CustomConstent;
+import team.tab.daixu.util.cache.JedisUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -64,16 +64,14 @@ public class ColligateController {
 
     private ModelAndView mv = new ModelAndView();
 
-
-    @Autowired
-    private ShardedJedisPool shardedJedisPool;
+    @Resource(name = "jedisUtilImpl")
+    private JedisUtil jedisUtil;
 
     @RequestMapping(value = "/demo_set",method = RequestMethod.GET)
     @ResponseBody
     public String demo_set(){
-        ShardedJedis shardJedis = shardedJedisPool.getResource();
-        shardJedis.set("key1","hello jedis");
-        shardJedis.close();
+        //存入键值对
+        jedisUtil.set("key2","hello jedis one");
 
         return "set";
     }
@@ -81,11 +79,7 @@ public class ColligateController {
     @RequestMapping(value = "/demo_put",method = RequestMethod.GET)
     @ResponseBody
     public String demo_put(){
-        ShardedJedis shardedJedis = shardedJedisPool.getResource();
-        String result = shardedJedis.get("key1");
-        shardedJedis.close();
-
-        return result;
+        return jedisUtil.get("key2");
     }
 
     /**

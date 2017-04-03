@@ -8,9 +8,6 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--启动时自动扫描该包下所有的Bean-->
-    <context:component-scan base-package="team.tab.daixu" />
-
     <!--注册一个UserDaoImpl对象，实例名为“userDaoImpl”-->
     <bean id="articleDaoImpl" class="team.tab.daixu.dao.impl.ArticleDaoImpl"/>
     <bean id="userDaoImpl" class="team.tab.daixu.dao.impl.UserDaoImpl"/>
@@ -30,4 +27,6 @@
     <bean id="storylineLabelServiceImpl" class="team.tab.daixu.service.impl.StorylineLabelServiceImpl"/>
     <bean id="storylineServiceImpl" class="team.tab.daixu.service.impl.StorylineServiceImpl"/>
     <bean id="userServiceImpl" class="team.tab.daixu.service.impl.UserServiceImpl"/>
+
+    <bean id="jedisUtilImpl" class="team.tab.daixu.util.cache.impl.JedisUtilImpl"/>
 </beans>

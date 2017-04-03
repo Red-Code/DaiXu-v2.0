@@ -138,11 +138,11 @@
     </dependency>
 
     <!--spring集成redis-->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-redis</artifactId>
-      <version>1.8.1.RELEASE</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.data</groupId>-->
+      <!--<artifactId>spring-data-redis</artifactId>-->
+      <!--<version>1.8.1.RELEASE</version>-->
+    <!--</dependency>-->
   </dependencies>
 
   <build>
