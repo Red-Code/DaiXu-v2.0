@@ -1,21 +1,19 @@
-package team.tab.daixu.util.cache.impl;
+package team.tab.daixu.cached.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import team.tab.daixu.util.cache.JedisUtil;
+import team.tab.daixu.cached.BaseCachedDao;
 
 /**
- * Created by CLY on 2017/4/1.
+ * Created by CLY on 2017/4/4.
  */
-@Component
-class JedisUtilImpl implements JedisUtil{
+public abstract class BaseCachedDaoImpl implements BaseCachedDao{
     @Autowired
-    private JedisPool jedisPool;//注入JedisPool
+    protected JedisPool jedisPool;//注入JedisPool
 
     //获取jedis实例，如果没有获取到，则关闭jedis并返回null
-    private Jedis getRedisClient() {
+    protected Jedis getRedisClient() {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();

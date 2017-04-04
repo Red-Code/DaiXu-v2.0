@@ -1,20 +1,19 @@
 package team.tab.daixu.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+import team.tab.daixu.cached.AdvCachedDao;
+import team.tab.daixu.cached.impl.AdvCachedDaoImpl;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
 import team.tab.daixu.util.CustomConstent;
-import team.tab.daixu.util.cache.JedisUtil;
+import team.tab.daixu.util.redis.JedisUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -64,22 +63,25 @@ public class ColligateController {
 
     private ModelAndView mv = new ModelAndView();
 
-    @Resource(name = "jedisUtilImpl")
-    private JedisUtil jedisUtil;
+    @Resource(name = "advCachedDaoImpl")
+    private AdvCachedDao advCachedDaoImpl;
 
     @RequestMapping(value = "/demo_set",method = RequestMethod.GET)
     @ResponseBody
     public String demo_set(){
+        String key_name = advCachedDaoImpl.get_key_name();
         //存入键值对
-        jedisUtil.set("key2","hello jedis one");
+        advCachedDaoImpl.set(key_name,"hello jedis adv_list");
 
-        return "set";
+        return "set_success";
     }
 
-    @RequestMapping(value = "/demo_put",method = RequestMethod.GET)
+    @RequestMapping(value = "/demo_get",method = RequestMethod.GET)
     @ResponseBody
-    public String demo_put(){
-        return jedisUtil.get("key2");
+    public String demo_get(){
+        String key_name=advCachedDaoImpl.get_key_name();
+
+        return advCachedDaoImpl.get(key_name);
     }
 
     /**

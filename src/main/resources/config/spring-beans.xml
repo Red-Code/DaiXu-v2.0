@@ -28,5 +28,5 @@
     <bean id="storylineServiceImpl" class="team.tab.daixu.service.impl.StorylineServiceImpl"/>
     <bean id="userServiceImpl" class="team.tab.daixu.service.impl.UserServiceImpl"/>
 
-    <bean id="jedisUtilImpl" class="team.tab.daixu.util.cache.impl.JedisUtilImpl"/>
+    <bean id="advCachedDaoImpl" class="team.tab.daixu.cached.impl.AdvCachedDaoImpl"/>
 </beans>

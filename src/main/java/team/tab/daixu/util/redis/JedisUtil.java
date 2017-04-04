@@ -1,4 +1,4 @@
-package team.tab.daixu.util.cache;
+package team.tab.daixu.util.redis;
 
 public interface JedisUtil {
     /**
