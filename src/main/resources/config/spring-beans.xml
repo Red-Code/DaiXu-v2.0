@@ -33,4 +33,5 @@
 
     <!--util类-->
     <bean id="passwordUtilImpl" class="team.tab.daixu.util.password.impl.Md5UtilImpl"/>
+    <bean id="uploadUtilImpl" class="team.tab.daixu.util.upload.impl.UploadUtilImpl"/>
 </beans>

@@ -9,6 +9,7 @@ import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.service.StorylineService;
 import team.tab.daixu.util.StringUtil;
+import team.tab.daixu.util.upload.UploadUtil;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -20,6 +21,9 @@ import java.util.Properties;
  */
 @Service
 public class StorylineServiceImpl implements StorylineService {
+    @Resource(name = "uploadUtilImpl")
+    private UploadUtil uploadUtilImpl;
+
     private StorylineDao storylineDaoImpl;
     @Override
     public StorylineEntity save(StorylineEntity storylineEntity, MultipartFile file) throws Exception{
@@ -38,14 +42,14 @@ public class StorylineServiceImpl implements StorylineService {
         String localPath = config.getProperty("localRoot");
 
         //创建新目录
-        String uri = File.separator+ StringUtil.getNowDateStr(File.separator);
+        String uri = File.separator+ uploadUtilImpl.getNowDateStr(File.separator);
         File dir = new File(localPath + uri);
         if(!dir.exists()){
             dir.mkdirs();
         }
 
         //创建新文件
-        String newFileName = StringUtil.getUniqueFileName();
+        String newFileName = uploadUtilImpl.getUniqueFileName();
         File f = new File(dir.getPath() + File.separator + newFileName + "." + suffix);
 
         //将输入流中的数据复制到新文件

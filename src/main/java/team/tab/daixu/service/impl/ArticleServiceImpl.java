@@ -9,6 +9,7 @@ import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.service.ArticleService;
 import team.tab.daixu.util.StringUtil;
+import team.tab.daixu.util.upload.UploadUtil;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -22,6 +23,9 @@ import java.util.Properties;
 public class ArticleServiceImpl implements ArticleService {
     @Resource(name = "articleDaoImpl")
     private ArticleDao articleDaoImpl;
+
+    @Resource(name = "uploadUtilImpl")
+    private UploadUtil uploadUtilImpl;
 
     @Override
     public ArticleEntity save(ArticleEntity articleEntity, MultipartFile file) throws Exception {
@@ -40,14 +44,14 @@ public class ArticleServiceImpl implements ArticleService {
         String localPath = config.getProperty("localRoot");
 
         //创建新目录
-        String uri = File.separator+ StringUtil.getNowDateStr(File.separator);
+        String uri = File.separator+ uploadUtilImpl.getNowDateStr(File.separator);
         File dir = new File(localPath + uri);
         if(!dir.exists()){
             dir.mkdirs();
         }
 
         //创建新文件
-        String newFileName = StringUtil.getUniqueFileName();
+        String newFileName = uploadUtilImpl.getUniqueFileName();
         File f = new File(dir.getPath() + File.separator + newFileName + "." + suffix);
 
         //将输入流中的数据复制到新文件
