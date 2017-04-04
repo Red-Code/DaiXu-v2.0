@@ -8,11 +8,11 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--注册一个UserDaoImpl对象，实例名为“userDaoImpl”-->
+    <!--Dao层-->
     <bean id="articleDaoImpl" class="team.tab.daixu.dao.impl.ArticleDaoImpl"/>
     <bean id="userDaoImpl" class="team.tab.daixu.dao.impl.UserDaoImpl"/>
 
-    <!--注册一个XxxxServiceImpl对象，实例名为“xxxxServiceImpl”-->
+    <!--service层-->
     <bean id="advServiceImpl" class="team.tab.daixu.service.impl.AdvServiceImpl"/>
     <bean id="articleDraftServiceImpl" class="team.tab.daixu.service.impl.ArticleDraftServiceImpl"/>
     <bean id="articleLabelServiceImpl" class="team.tab.daixu.service.impl.ArticleLabelServiceImpl"/>
@@ -28,5 +28,9 @@
     <bean id="storylineServiceImpl" class="team.tab.daixu.service.impl.StorylineServiceImpl"/>
     <bean id="userServiceImpl" class="team.tab.daixu.service.impl.UserServiceImpl"/>
 
+    <!--cached层-->
     <bean id="advCachedDaoImpl" class="team.tab.daixu.cached.impl.AdvCachedDaoImpl"/>
+
+    <!--util类-->
+    <bean id="passwordUtilImpl" class="team.tab.daixu.util.password.impl.Md5UtilImpl"/>
 </beans>

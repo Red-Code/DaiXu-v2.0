@@ -1,18 +1,21 @@
-package team.tab.daixu.util;
+package team.tab.daixu.util.password.impl;
+
+import org.springframework.stereotype.Component;
+import team.tab.daixu.util.password.PasswordUtil;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by CLY on 2017/3/27.
- *
- * 创建md5加密
+ * Created by CLY on 2017/4/4.
  */
-public class MD5Util {
-    public static String getMd5(String plainText) {
+@Component
+public class Md5UtilImpl implements PasswordUtil {
+    @Override
+    public String encrypted(String origin_data) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(plainText.getBytes());
+            md.update(origin_data.getBytes());
             byte b[] = md.digest();
 
             int i;

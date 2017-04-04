@@ -1,11 +1,10 @@
 package team.tab.daixu.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import team.tab.daixu.dao.UserDao;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.UserService;
-import team.tab.daixu.util.MD5Util;
+import team.tab.daixu.util.password.PasswordUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -20,6 +19,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource(name = "userDaoImpl")
     private UserDao userDaoImpl;
+
+    @Resource(name = "passwordUtilImpl")
+    private PasswordUtil passwordUtilImpl;
 
     @Override
     public Boolean save(UserEntity userEntity) {
@@ -46,13 +48,13 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userDaoImpl.findByEmail(user_email);
 
         String user_password = userEntity.getPassword();//数据库中的用户密码
-        String get_psw_md5 = MD5Util.getMd5(password);//将传入密码进行md5加密
+        String get_psw_md5 = passwordUtilImpl.encrypted(password);//将传入密码进行md5加密
 
         if (user_password == get_psw_md5){//比较传入密码是否正确
             int user_id = userEntity.getId();
 
             //根据用户id生成一个盐值，每次发送id都将该盐值也发送过去，当下次接收cookie时判断该盐值是否正确，如果不正确就表示被篡改了
-            String user_salt = MD5Util.getMd5(user_id+"user_id");
+            String user_salt = passwordUtilImpl.encrypted(user_id+"user_id");
 
             Cookie cookie = new Cookie("user_id",user_id+"|"+user_salt);
             cookie.setMaxAge(720 * 60);// 12h
@@ -78,7 +80,7 @@ public class UserServiceImpl implements UserService {
                     String user_id = cookie_value[0];
                     String salt = cookie_value[1];
 
-                    if (salt==MD5Util.getMd5(user_id+"user_id")){
+                    if (salt== passwordUtilImpl.encrypted(user_id+"user_id")){
                         cookie.setValue(null);
                         cookie.setMaxAge(0);
                         cookie.setPath("/");

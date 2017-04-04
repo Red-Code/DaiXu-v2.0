@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import team.tab.daixu.cached.AdvCachedDao;
-import team.tab.daixu.cached.impl.AdvCachedDaoImpl;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
 import team.tab.daixu.util.CustomConstent;
-import team.tab.daixu.util.redis.JedisUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
