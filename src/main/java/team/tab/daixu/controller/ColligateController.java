@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import team.tab.daixu.cached.AdvCachedDao;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.AdvEntity;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
@@ -98,7 +99,7 @@ public class ColligateController {
         List<ArticleEntity> show_list_recommend_article = articleServiceImpl.findArticleRecommendList(article_commend_show_num);
         List<StorylineEntity> show_list_recommend_storyline = storylineServiceImpl.findMoreRecommend(storyline_commend_show_num);
         List<ArticleEntity> show_list_new_article = articleServiceImpl.findArticleNewList(article_new_show_num);
-        List<StorylineEntity> show_list_new_storyline = storylineServiceImpl.findMoreByWhere(1, CustomConstent.ORDER_DESC,1,storyline_new_show_num);
+        List<StorylineEntity> show_list_new_storyline = storylineServiceImpl.findMoreByWhere(1, OrderConstent.ORDER_NEW,1,storyline_new_show_num);
 
         mv.setViewName("homepage");//homepage就是视图的名称（homepage.ftl）
         mv.addObject("list_advs",show_list_advs);//轮播图信息

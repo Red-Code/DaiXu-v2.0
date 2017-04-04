@@ -3,6 +3,7 @@ package team.tab.daixu.service.impl;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.dao.StorylineDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
@@ -63,31 +64,39 @@ public class StorylineServiceImpl implements StorylineService {
     }
 
     @Override
-    public List<StorylineEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num) {
+    public List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num) {
         int begin_limit = now_page*show_num-show_num;
 
         List<StorylineEntity> result_find;
-        if (order=="1"){//表示是最新查询
-            result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num);
-        }else if (order=="2"){//按最热查询
-            result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num);
-        }else {
-            result_find = null;
+        switch (order){
+            case ORDER_NEW://表示是最新查询
+                result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num);
+                break;
+            case ORDER_HOT://按最热查询
+                result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num);
+                break;
+            default:
+                result_find = null;
         }
+
         return result_find;
     }
 
     @Override
-    public List<StorylineEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num, String tag) {
+    public List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num, String tag) {
         int begin_limit = now_page*show_num-show_num;
 
         List<StorylineEntity> result_find;
-        if (order=="1"){//表示是最新查询
-            result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num,tag);
-        }else if (order=="2"){//按最热查询
-            result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num,tag);
-        }else {
-            result_find = null;
+        switch (order){
+            case ORDER_NEW:
+                result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num,tag);
+                break;
+            case ORDER_HOT:
+                result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num,tag);
+                break;
+            default:
+                result_find = null;
+                break;
         }
 
         return result_find;
@@ -106,7 +115,7 @@ public class StorylineServiceImpl implements StorylineService {
     }
 
     @Override
-    public List<StorylineEntity> findMoreByUser(Integer user_id, int now_page, String time_order, int show_num, int relate_type) {
+    public List<StorylineEntity> findMoreByUser(Integer user_id, int now_page, OrderConstent time_order, int show_num, int relate_type) {
         int begin_limit = now_page*show_num-show_num;
 
         List<StorylineEntity> result_storyline;

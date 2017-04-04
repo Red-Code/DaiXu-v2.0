@@ -1,6 +1,7 @@
 package team.tab.daixu.service;
 
 import org.springframework.web.multipart.MultipartFile;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.ArticleEntity;
 
 import java.util.List;
@@ -69,7 +70,7 @@ public interface ArticleService {
      * @param show_num 每页展示文章数
      * @return 文章列表
      */
-    List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule,int show_num);
+    List<ArticleEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num);
 
     /**
      * 根据参数条件查询出文章列表
@@ -80,7 +81,7 @@ public interface ArticleService {
      * @param tag 按标签查询的“标签”
      * @return 文章列表
      */
-    List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule,int show_num,String tag);
+    List<ArticleEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule,int show_num,String tag);
 
     /**
      * 根据所有的文章，查询出总分页数
@@ -98,7 +99,7 @@ public interface ArticleService {
      * @param relate_type 1表示是发布的，2表示是参与的
      * @return
      */
-    List<ArticleEntity> findMoreByUser(Integer user_id,Integer now_page, String order,int show_num,int relate_type);
+    List<ArticleEntity> findMoreByUser(Integer user_id,Integer now_page, OrderConstent order,int show_num,int relate_type);
 
     /**
      * 根据用户id查询文章列表总数

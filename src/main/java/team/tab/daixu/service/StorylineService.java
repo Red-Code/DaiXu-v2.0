@@ -1,6 +1,7 @@
 package team.tab.daixu.service;
 
 import org.springframework.web.multipart.MultipartFile;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.StorylineEntity;
 
 import java.util.List;
@@ -27,23 +28,23 @@ public interface StorylineService {
     /**
      * 根据条件查询出故事线列表（无标签条件）
      * @param now_page 当前页数，1表示第一页
-     * @param order 1表示最新，2表示最热
+     * @param order 排序顺序
      * @param rule 1表示全部。2表示二万字以下。3表示二万字到十万字。4表示十万字以上
      * @param show_num 展示条数
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByWhere(Integer now_page, String order, Integer rule,int show_num);
+    List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num);
 
     /**
      * 根据条件查询出故事线列表（有标签条件）
      * @param now_page 当前页数，1表示第一页
-     * @param order 1表示最新，2表示最热
+     * @param order 排序顺序
      * @param rule 1表示全部。2表示二万字以下。3表示二万字到十万字。4表示十万字以上
      * @param show_num 展示页数
      * @param tag 按标签查询的“标签”
      * @return 故事线列表
      */
-    List<StorylineEntity> findMoreByWhere(Integer now_page, String order, Integer rule,int show_num, String tag);
+    List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule,int show_num, String tag);
 
     /**
      * 根据所有的故事线数，查询出总分页数
@@ -68,7 +69,7 @@ public interface StorylineService {
      * @param relate_type 1表示是发布的，2表示是参与的
      * @return
      */
-    List<StorylineEntity> findMoreByUser(Integer user_id, int now_page, String time_order, int show_num, int relate_type);
+    List<StorylineEntity> findMoreByUser(Integer user_id, int now_page, OrderConstent time_order, int show_num, int relate_type);
 
     /**
      * 根据用户id查询故事线列表总数

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.ContinueEntity;
 import team.tab.daixu.entity.UserEntity;
@@ -67,19 +68,19 @@ public class ArticleController {
             @RequestParam(value = "tag",required = false) String get_tag
     ){
         final int show_num = 12;//每页展示数
-        final String order;//排序方法
+        final OrderConstent order;//排序方法
         final Integer now_page;//当前页数
         final Integer rule;//按等级查询的条件
 
         switch (get_order){
             case '1':
-                order = CustomConstent.ORDER_DESC;
+                order = OrderConstent.ORDER_NEW;
                 break;
             case '2':
-                order = CustomConstent.ORDER_HOT;
+                order = OrderConstent.ORDER_HOT;
                 break;
             default:
-                order = CustomConstent.ORDER_DESC;
+                order = OrderConstent.ORDER_NEW;
                 break;
         }
 

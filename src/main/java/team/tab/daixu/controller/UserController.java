@@ -3,6 +3,7 @@ package team.tab.daixu.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
@@ -150,7 +151,7 @@ public class UserController {
     ){
         final int now_page;//当前页数
         final int show_num = 9;//每页展示数
-        final String time_order = CustomConstent.ORDER_DESC;//查询的排序方法
+        OrderConstent time_order = OrderConstent.ORDER_NEW;//查询的排序方法
         final int relate_type;//1表示是发布的，2表示是参与的
 
         if (get_now_page==null){
@@ -195,7 +196,7 @@ public class UserController {
     ){
         final int now_page;//当前页数
         final int show_num = 9;//每页展示数
-        final String time_order = CustomConstent.ORDER_DESC;//查询的排序方法
+        OrderConstent time_order = OrderConstent.ORDER_NEW;//查询的排序方法
         final int relate_type;//1表示是发布的，2表示是参与的
 
         if (get_now_page==null){

@@ -1,5 +1,6 @@
 package team.tab.daixu.service;
 
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.StorylineCommentEntity;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface StorylineCommentService {
      * @param time_order 时间排序规则
      * @return 含有评论者信息的评论列表
      */
-    List<StorylineCommentEntity> findMoreByWhere(int storyline_id,Integer now_page,int show_num,String time_order);
+    List<StorylineCommentEntity> findMoreByWhere(int storyline_id,Integer now_page,int show_num,OrderConstent time_order);
 }

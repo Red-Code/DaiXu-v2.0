@@ -5,12 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.entity.StorylineCommentEntity;
 import team.tab.daixu.entity.StorylineContinueEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
-import team.tab.daixu.util.CustomConstent;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -70,19 +70,19 @@ public class StorylineController {
             @RequestParam(value = "tag",required = false) String get_tag
     ){
         final int show_num = 12;
-        final String order;
+        final OrderConstent order;
         final Integer now_page;
         final Integer rule;
 
         switch (get_order){
             case '1':
-                order = CustomConstent.ORDER_DESC;
+                order = OrderConstent.ORDER_NEW;
                 break;
             case '2':
-                order = CustomConstent.ORDER_HOT;
+                order = OrderConstent.ORDER_HOT;
                 break;
             default:
-                order = CustomConstent.ORDER_DESC;
+                order = OrderConstent.ORDER_NEW;
                 break;
         }
 
@@ -153,7 +153,7 @@ public class StorylineController {
     ){
         final int now_page = 1;
         final int show_num = 4;
-        final String time_order = CustomConstent.ORDER_DESC;//从最新的评论开始显示
+        OrderConstent time_order = OrderConstent.ORDER_NEW;//从最新的评论开始显示
 
         StorylineEntity show_one_storyline = storylineServiceImpl.findOneById(get_storyline_id);
         UserEntity show_one_author = userServiceImpl.findOneById(show_one_storyline.getAuthorId());

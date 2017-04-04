@@ -4,6 +4,7 @@ package team.tab.daixu.service.impl;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.service.ArticleService;
@@ -90,12 +91,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num) {
+    public List<ArticleEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num) {
         return null;
     }
 
     @Override
-    public List<ArticleEntity> findMoreByWhere(Integer now_page, String order, Integer rule, int show_num, String tag) {
+    public List<ArticleEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num, String tag) {
         return null;
     }
 
@@ -105,7 +106,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleEntity> findMoreByUser(Integer user_id, Integer now_page, String order, int show_num, int relate_type) {
+    public List<ArticleEntity> findMoreByUser(Integer user_id, Integer now_page, OrderConstent order, int show_num, int relate_type) {
         return null;
     }
 
