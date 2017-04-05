@@ -3,22 +3,22 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "task", schema = "daixu", catalog = "")
 public class TaskEntity {
-    private int id;
+    private long id;
     private String content;
     private String reward;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -58,7 +58,7 @@ public class TaskEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (reward != null ? reward.hashCode() : 0);
         return result;

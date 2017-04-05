@@ -8,7 +8,6 @@ import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.service.ArticleService;
-import team.tab.daixu.util.StringUtil;
 import team.tab.daixu.util.upload.UploadUtil;
 
 import javax.annotation.Resource;
@@ -66,7 +65,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleEntity findOneById(Integer article_id) {
-        return articleDaoImpl.findOneById(article_id);
+        return articleDaoImpl.getOneById(article_id);
     }
 
     @Override

@@ -16,6 +16,6 @@ public class AdvServiceImpl implements AdvService {
 
     @Override
     public List<AdvEntity> findAll() {
-        return advDaoImpl.findAll();
+        return advDaoImpl.loadAll();
     }
 }

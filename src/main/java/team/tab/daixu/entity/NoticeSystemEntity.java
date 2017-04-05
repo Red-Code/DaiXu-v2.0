@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "notice_system", schema = "daixu", catalog = "")
 public class NoticeSystemEntity {
-    private int id;
+    private long id;
     private int receiveId;
     private String content;
     private Timestamp time;
@@ -18,11 +18,11 @@ public class NoticeSystemEntity {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -95,7 +95,7 @@ public class NoticeSystemEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + receiveId;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);

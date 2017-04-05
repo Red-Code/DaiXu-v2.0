@@ -3,12 +3,12 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "storyline_continue", schema = "daixu", catalog = "")
 public class StorylineContinueEntity {
-    private int id;
+    private long id;
     private String item;
     private String continueContent;
     private Integer storylineId;
@@ -17,11 +17,11 @@ public class StorylineContinueEntity {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -95,7 +95,7 @@ public class StorylineContinueEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (item != null ? item.hashCode() : 0);
         result = 31 * result + (continueContent != null ? continueContent.hashCode() : 0);
         result = 31 * result + (storylineId != null ? storylineId.hashCode() : 0);

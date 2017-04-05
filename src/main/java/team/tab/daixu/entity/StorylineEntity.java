@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "storyline", schema = "daixu", catalog = "")
 public class StorylineEntity {
-    private int id;
+    private long id;
     private int authorId;
     private String name;
     private String surface;
@@ -22,11 +22,11 @@ public class StorylineEntity {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -143,7 +143,7 @@ public class StorylineEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + authorId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surface != null ? surface.hashCode() : 0);

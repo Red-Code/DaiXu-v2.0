@@ -23,21 +23,21 @@ import java.util.List;
  * Created by CLY on 2017/1/5.
  */
 @Repository
-public class ArticleDaoImpl implements ArticleDao {
-    @Resource(name = "sessionFactory")
-    private SessionFactory sessionFactory;//注入sessionFactory
-
+public class ArticleDaoImpl extends BaseDaoImpl<ArticleEntity> implements ArticleDao {
     @Override
     public ArticleEntity act_save(ArticleEntity articleEntity) {
         return null;
     }
 
     @Override
-    public ArticleEntity findOneById(Integer article_id) {
+    public ArticleEntity getOneById(Integer article_id) {
         String hql = "from ArticleEntity where id="+article_id;//hql语句
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
+
         List<ArticleEntity> list_article = query.list();
+
+        Serializable ddd = sessionFactory.getCurrentSession().save(list_article.get(0));
         System.out.print("list结构"+list_article.get(0).getName());
 
 //        Session session=sessionFactory.openSession();//打开Session

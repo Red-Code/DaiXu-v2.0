@@ -61,8 +61,8 @@ public abstract class BaseCachedDaoImpl implements BaseCachedDao{
     }
 
     @Override
-    public Long del(String key) {
-        Long result = null;
+    public long del(String key) {
+        long result = 0;
         Jedis jedis = getRedisClient();
 
         if (jedis == null) {
@@ -80,8 +80,8 @@ public abstract class BaseCachedDaoImpl implements BaseCachedDao{
     }
 
     @Override
-    public Long expire(String key, int seconds) {
-        Long result = null;
+    public long expire(String key, int seconds) {
+        long result = 0;
         Jedis jedis = getRedisClient();
 
         if (jedis == null) {
@@ -98,8 +98,8 @@ public abstract class BaseCachedDaoImpl implements BaseCachedDao{
     }
 
     @Override
-    public Long expireAt(String key, long unixTime) {
-        Long result = null;
+    public long expireAt(String key, long unixTime) {
+        long result = 0;
         Jedis jedis = getRedisClient();
         if (jedis == null) {
             return result;
@@ -116,8 +116,8 @@ public abstract class BaseCachedDaoImpl implements BaseCachedDao{
     }
 
     @Override
-    public Boolean exists(String key) {
-        Boolean result = false;
+    public boolean exists(String key) {
+        boolean result = false;
         Jedis jedis = getRedisClient();
 
         if (jedis == null) {

@@ -17,10 +17,11 @@ public class ArticleLabelServiceImpl implements ArticleLabelService {
 
     @Override
     public Boolean actSave(int article_id, String mix_article_label) {
-        String[] array_label = mix_article_label.split(",");
-
-        Boolean result_save = articleLabelDaoImpl.act_save(article_id,array_label);
-
-        return result_save;
+//        String[] array_label = mix_article_label.split(",");
+//
+//        Boolean result_save = articleLabelDaoImpl.act_save(article_id,array_label);
+//
+//        return result_save;
+        return true;
     }
 }

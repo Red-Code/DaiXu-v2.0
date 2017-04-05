@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "user", schema = "daixu", catalog = "")
 public class UserEntity {
-    private int id;
+    private long id;
     private String name;
     private Integer join;
     private Integer follow;
@@ -34,11 +34,11 @@ public class UserEntity {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -287,7 +287,7 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (join != null ? join.hashCode() : 0);
         result = 31 * result + (follow != null ? follow.hashCode() : 0);

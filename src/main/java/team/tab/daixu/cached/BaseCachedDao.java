@@ -26,7 +26,7 @@ public interface BaseCachedDao {
      * @param key 键值
      * @return 如果没有被删除，则返回0，如果都n个key被删除则返回n
      */
-    Long del(String key);
+    long del(String key);
 
     /**
      * 在某段时间后失效
@@ -34,7 +34,7 @@ public interface BaseCachedDao {
      * @param seconds 秒数
      * @return 1表示时间设置成功，0表示没有设置成功（可能是key不存在）
      */
-    Long expire(String key, int seconds);
+    long expire(String key, int seconds);
 
     /**
      * 在某个时间点失效
@@ -42,12 +42,12 @@ public interface BaseCachedDao {
      * @param unixTime
      * @return 1表示时间设置成功，0表示没有设置成功（可能是key不存在）
      */
-    Long expireAt(String key, long unixTime);
+    long expireAt(String key, long unixTime);
 
     /**
      * 该键值是否存在
      * @param key 键值
      * @return true表示存在，false表示不存在
      */
-    Boolean exists(String key);
+    boolean exists(String key);
 }

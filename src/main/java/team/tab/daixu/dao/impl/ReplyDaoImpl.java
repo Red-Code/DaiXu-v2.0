@@ -11,23 +11,4 @@ import java.util.List;
  */
 @Repository
 public class ReplyDaoImpl implements ReplyDao {
-    @Override
-    public void save(ReplyEntity replyEntity) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(ReplyEntity replyEntity) {
-
-    }
-
-    @Override
-    public List<ReplyEntity> findByLayer(int layer_id) {
-        return null;
-    }
 }

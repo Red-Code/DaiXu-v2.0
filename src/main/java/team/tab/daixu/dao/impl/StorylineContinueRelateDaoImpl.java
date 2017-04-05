@@ -11,23 +11,5 @@ import java.util.List;
  */
 @Repository
 public class StorylineContinueRelateDaoImpl implements StorylineContinueRelateDao {
-    @Override
-    public void save(StorylineContinueRelateEntity storylineContinueRelateEntity) {
 
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(StorylineContinueRelateEntity storylineContinueRelateEntity) {
-
-    }
-
-    @Override
-    public List<StorylineContinueRelateEntity> findByFrontId(int front_id) {
-        return null;
-    }
 }

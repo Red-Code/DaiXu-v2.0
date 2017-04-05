@@ -3,12 +3,12 @@ package team.tab.daixu.entity;
 import javax.persistence.*;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "news", schema = "daixu", catalog = "")
 public class NewsEntity {
-    private int id;
+    private long id;
     private int send;
     private int receive;
     private String content;
@@ -16,11 +16,11 @@ public class NewsEntity {
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -82,7 +82,7 @@ public class NewsEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + send;
         result = 31 * result + receive;
         result = 31 * result + (content != null ? content.hashCode() : 0);

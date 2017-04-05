@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by CLY on 2017/1/3.
  */
-public interface ArticleDao {
+public interface ArticleDao extends BaseDao<ArticleEntity> {
     /**
      * 将文章持久化对象存入数据库
      * @param articleEntity 持久化对象
@@ -20,7 +20,7 @@ public interface ArticleDao {
      * @param article_id 文章id
      * @return 单个文章持久化类对象
      */
-    ArticleEntity findOneById(Integer article_id);
+    ArticleEntity getOneById(Integer article_id);
 
     /**
      * 关联查询出首页需要展示的文章和文章信息

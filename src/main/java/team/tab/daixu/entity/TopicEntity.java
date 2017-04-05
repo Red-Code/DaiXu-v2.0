@@ -4,23 +4,23 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by CLY on 2017/3/25.
+ * Created by CLY on 2017/4/5.
  */
 @Entity
 @Table(name = "topic", schema = "daixu", catalog = "")
 public class TopicEntity {
-    private int id;
+    private long id;
     private String name;
     private Date data;
     private String url;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class TopicEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (data != null ? data.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);

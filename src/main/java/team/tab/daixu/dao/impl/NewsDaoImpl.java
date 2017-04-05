@@ -12,33 +12,5 @@ import java.util.List;
  */
 @Repository
 public class NewsDaoImpl implements NewsDao {
-    @Override
-    public void save(NewsEntity newsEntity) {
 
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public void update(NewsEntity newsEntity) {
-
-    }
-
-    @Override
-    public List<NewsEntity> findByReceiveId(int receive_id) {
-        return null;
-    }
-
-    @Override
-    public List<NewsEntity> findNewByReceiveId(int receive_id) {
-        return null;
-    }
-
-    @Override
-    public int findNoSeeByReceiveId(int receive_id) {
-        return 0;
-    }
 }
