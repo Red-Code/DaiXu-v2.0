@@ -65,4 +65,6 @@ public interface BaseDao<T> {
      * @return 是否成功
      */
     boolean initialize(T entity);
+
+
 }
