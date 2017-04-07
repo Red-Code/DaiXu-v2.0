@@ -34,4 +34,18 @@
     <!--util类-->
     <bean id="passwordUtilImpl" class="team.tab.daixu.util.password.impl.Md5UtilImpl"/>
     <bean id="uploadUtilImpl" class="team.tab.daixu.util.upload.impl.UploadUtilImpl"/>
+    <bean id="pageUtilImpl" class="team.tab.daixu.util.page.impl.PageUtilImpl">
+        <!--每页展示的记录数-->
+        <constructor-arg index="0" value="0"/>
+        <!--当前页第一条数据在数据库表中的位置-->
+        <constructor-arg index="1" value="0"/>
+        <!--记录总数-->
+        <constructor-arg index="2" value="0"/>
+        <!--当前页中存放的记录-->
+        <constructor-arg index="3">
+            <list>
+                <value></value>
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>

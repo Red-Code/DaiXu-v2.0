@@ -4,6 +4,8 @@ package team.tab.daixu.dao;
  * Created by CLY on 2017/4/5.
  */
 
+import team.tab.daixu.util.page.PageUtil;
+
 import java.util.List;
 
 /**
@@ -53,11 +55,19 @@ public interface BaseDao<T> {
     List<T> loadAll();
 
     /**
-     * 执行hql语句
+     * 执行hql语句查询，并返回list结果
      * @param hql hql语句
      * @return 结果列表
      */
-    List<T> find(String hql);
+    List find(String hql);
+
+    /**
+     * 执行一个含有占位符的hql查询，并返回list结果
+     * @param hql hql语句
+     * @param values 占位符所对应的具体属性值
+     * @return 查询结果
+     */
+    List find(String hql,Object... values);
 
     /**
      * 对延迟加载的持久化对象执行初始化
@@ -65,6 +75,4 @@ public interface BaseDao<T> {
      * @return 是否成功
      */
     boolean initialize(T entity);
-
-
 }
