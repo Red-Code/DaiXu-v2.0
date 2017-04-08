@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import team.tab.daixu.cons.OrderConstent;
+import team.tab.daixu.cons.UserJoinType;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
+import team.tab.daixu.util.page.PageUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -196,7 +198,7 @@ public class UserController {
         final int now_page;//当前页数
         final int show_num = 9;//每页展示数
         OrderConstent time_order = OrderConstent.ORDER_NEW;//查询的排序方法
-        final int relate_type;//1表示是发布的，2表示是参与的
+        UserJoinType userJoinType=null;//1表示是发布的，2表示是参与的
 
         if (get_now_page==null){
             now_page = 1;
@@ -204,23 +206,23 @@ public class UserController {
             now_page = get_now_page;
         }
 
-        if (get_relate_type==null){
-            relate_type = 1;
+        if (get_relate_type==1){
+            userJoinType=UserJoinType.PUBLISH;
+        }else if (get_relate_type==2){
+            userJoinType=UserJoinType.CONTINUE;
         }else {
-            relate_type = get_relate_type;
+
         }
 
         UserEntity show_user_info = userServiceImpl.findOneById(get_user_id);
         List<UserEntity> show_list_follow = userServiceImpl.findFollowListById(get_user_id);
-        List<StorylineEntity> show_list_my_storyline = storylineServiceImpl.findMoreByUser(get_user_id, now_page, time_order, show_num, relate_type);
-        int sum_page = storylineServiceImpl.findPageSumByUser(get_user_id,show_num,relate_type);
+        PageUtil show_list_my_storyline = storylineServiceImpl.findMoreByUser(get_user_id, now_page, time_order, show_num, userJoinType);
 
         mv.setViewName("my_homepage_article");
         mv.addObject("one_user_info",show_user_info);//用户信息
         mv.addObject("list",show_list_follow);//该用户关注的用户
         mv.addObject("list_my_storyline",show_list_my_storyline);//相关故事线列表
         mv.addObject("paging_now_page",now_page);//当前页数
-        mv.addObject("paging_total_page",sum_page);//目前总页数
 
         return mv;
     }

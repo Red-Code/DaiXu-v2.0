@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import team.tab.daixu.cons.OrderConstent;
+import team.tab.daixu.cons.StorylineNumRule;
 import team.tab.daixu.entity.StorylineCommentEntity;
 import team.tab.daixu.entity.StorylineContinueEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.entity.UserEntity;
 import team.tab.daixu.service.*;
+import team.tab.daixu.util.page.PageUtil;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -72,7 +74,7 @@ public class StorylineController {
         final int show_num = 12;
         final OrderConstent order;
         final Integer now_page;
-        final Integer rule;
+        StorylineNumRule storylineNumRule = null;
 
         switch (get_order){
             case '1':
@@ -92,27 +94,30 @@ public class StorylineController {
             now_page = get_now_page;
         }
 
-        if (get_rule==null){
-            rule = 1;
+        if (get_rule==1){
+            storylineNumRule = StorylineNumRule.NUM_ALL;
+        }else if (get_rule==2){
+            storylineNumRule = StorylineNumRule.NUM_LESS;
+        }else if (get_rule==3){
+            storylineNumRule = StorylineNumRule.NUM_SECONDARY;
+        }else if (get_rule==4){
+            storylineNumRule = StorylineNumRule.NUM_MORE;
         }else {
-            rule = get_rule;
+
         }
 
-        List<StorylineEntity> show_list_storyline;
+        PageUtil show_list_storyline;
         if (get_tag==null){
-            show_list_storyline=storylineServiceImpl.findMoreByWhere(now_page,order,rule,show_num);
+            show_list_storyline=storylineServiceImpl.findMoreByOrderRule(now_page,order,storylineNumRule,show_num);
         }else {
-            show_list_storyline=storylineServiceImpl.findMoreByWhere(now_page,order,rule,show_num,get_tag);
+            show_list_storyline=storylineServiceImpl.findMoreByOrderRuleTag(now_page,order,storylineNumRule,show_num,get_tag);
         }
-
-        int sum_page = storylineServiceImpl.findPageSum(show_num);
 
         mv.setViewName("storyline_classify");
         mv.addObject("order",order);//当前的排序规则
-        mv.addObject("rule",rule);//当前权限选择
+        mv.addObject("rule",get_rule);//当前权限选择
         mv.addObject("list_article",show_list_storyline);//展示的故事线列表
         mv.addObject("paging_now_page",now_page);//当前页数
-        mv.addObject("paging_total_page",sum_page);//目前总页数
         return mv;
     }
 

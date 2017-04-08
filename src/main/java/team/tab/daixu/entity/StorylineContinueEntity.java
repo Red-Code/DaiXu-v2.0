@@ -11,7 +11,7 @@ public class StorylineContinueEntity {
     private long id;
     private String item;
     private String continueContent;
-    private Integer storylineId;
+    private long storylineId;
     private String whetherBegin;
     private String whetherEnd;
 
@@ -47,11 +47,11 @@ public class StorylineContinueEntity {
 
     @Basic
     @Column(name = "storyline_id")
-    public Integer getStorylineId() {
+    public long getStorylineId() {
         return storylineId;
     }
 
-    public void setStorylineId(Integer storylineId) {
+    public void setStorylineId(long storylineId) {
         this.storylineId = storylineId;
     }
 
@@ -86,7 +86,6 @@ public class StorylineContinueEntity {
         if (item != null ? !item.equals(that.item) : that.item != null) return false;
         if (continueContent != null ? !continueContent.equals(that.continueContent) : that.continueContent != null)
             return false;
-        if (storylineId != null ? !storylineId.equals(that.storylineId) : that.storylineId != null) return false;
         if (whetherBegin != null ? !whetherBegin.equals(that.whetherBegin) : that.whetherBegin != null) return false;
         if (whetherEnd != null ? !whetherEnd.equals(that.whetherEnd) : that.whetherEnd != null) return false;
 
@@ -98,7 +97,6 @@ public class StorylineContinueEntity {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (item != null ? item.hashCode() : 0);
         result = 31 * result + (continueContent != null ? continueContent.hashCode() : 0);
-        result = 31 * result + (storylineId != null ? storylineId.hashCode() : 0);
         result = 31 * result + (whetherBegin != null ? whetherBegin.hashCode() : 0);
         result = 31 * result + (whetherEnd != null ? whetherEnd.hashCode() : 0);
         return result;

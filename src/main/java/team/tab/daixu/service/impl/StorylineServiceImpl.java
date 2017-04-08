@@ -4,10 +4,13 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.tab.daixu.cons.OrderConstent;
+import team.tab.daixu.cons.StorylineNumRule;
+import team.tab.daixu.cons.UserJoinType;
 import team.tab.daixu.dao.StorylineDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.StorylineEntity;
 import team.tab.daixu.service.StorylineService;
+import team.tab.daixu.util.page.PageUtil;
 import team.tab.daixu.util.upload.UploadUtil;
 
 import javax.annotation.Resource;
@@ -56,9 +59,14 @@ public class StorylineServiceImpl implements StorylineService {
 
         //将封面图url装到持久化类里面
         storylineEntity.setSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
-        StorylineEntity result_save = storylineDaoImpl.save(storylineEntity);
+        boolean result_save = storylineDaoImpl.save(storylineEntity);//此时持久化对象已经拥有id
+        if (result_save){
+            return storylineEntity;
+        }else {
+            return null;
+        }
 
-        return result_save;
+
     }
 
     @Override
@@ -67,89 +75,38 @@ public class StorylineServiceImpl implements StorylineService {
     }
 
     @Override
-    public List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num) {
-        int begin_limit = now_page*show_num-show_num;
-
-        List<StorylineEntity> result_find;
-        switch (order){
-            case ORDER_NEW://表示是最新查询
-                result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num);
-                break;
-            case ORDER_HOT://按最热查询
-                result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num);
-                break;
-            default:
-                result_find = null;
-        }
+    public PageUtil findMoreByOrderRule(int now_page, OrderConstent order, StorylineNumRule num_rule, int show_num) {
+        PageUtil result_find = storylineDaoImpl.findMoreByOrderRule(now_page,order,num_rule,show_num);
 
         return result_find;
     }
 
     @Override
-    public List<StorylineEntity> findMoreByWhere(Integer now_page, OrderConstent order, Integer rule, int show_num, String tag) {
-        int begin_limit = now_page*show_num-show_num;
-
-        List<StorylineEntity> result_find;
-        switch (order){
-            case ORDER_NEW:
-                result_find = storylineDaoImpl.findMoreByOrderNews(begin_limit, rule, show_num,tag);
-                break;
-            case ORDER_HOT:
-                result_find = storylineDaoImpl.findMoreByOrderHot(begin_limit,rule,show_num,tag);
-                break;
-            default:
-                result_find = null;
-                break;
-        }
+    public PageUtil findMoreByOrderRuleTag(int now_page, OrderConstent order, StorylineNumRule num_rule,int show_num, String tag) {
+        PageUtil result_find = storylineDaoImpl.findMoreByOrderRuleTag(now_page, order, num_rule, show_num, tag);
 
         return result_find;
     }
 
     @Override
-    public int findPageSum(int show_num) {
-        int sum_count = storylineDaoImpl.findSumByCount();
-        int sum_page = sum_count/show_num;
-        return sum_page;
+    public StorylineEntity findOneById(long storyline_id) {
+        return storylineDaoImpl.getById(storyline_id);
     }
 
     @Override
-    public StorylineEntity findOneById(Integer storyline_id) {
-        return storylineDaoImpl.findOneById(storyline_id);
-    }
+    public PageUtil findMoreByUser(long user_id, int now_page, OrderConstent time_order, int show_num, UserJoinType relate_type) {
+        PageUtil result_storyline = storylineDaoImpl.findMoreByUser(user_id, now_page, time_order, show_num, relate_type);
 
-    @Override
-    public List<StorylineEntity> findMoreByUser(Integer user_id, int now_page, OrderConstent time_order, int show_num, int relate_type) {
-        int begin_limit = now_page*show_num-show_num;
-
-        List<StorylineEntity> result_storyline;
-        if (relate_type == 1){//表示是用户发布的，所以与storylineDao有关
-            result_storyline = storylineDaoImpl.findMoreByOrderNews(user_id,begin_limit,show_num);
-        }else if (relate_type==2){//用户参与的，与controllerDao有关
-            result_storyline = null;
-        }else {
-            result_storyline = null;
-        }
         return result_storyline;
     }
 
     @Override
-    public int findPageSumByUser(Integer user_id, int show_num, int relate_type) {
-
-        int sum_count;
-        if (relate_type == 1){//表示是用户发布的，所以与storylineDao有关
-            sum_count = storylineDaoImpl.findSumByCount(user_id);
-        }else if (relate_type==2){//用户参与的，与controllerDao有关
-            sum_count = 0;
-        }else {
-            sum_count = 0;
-        }
-
-        int sum_page = sum_count/show_num;
-        return sum_page;
+    public List<StorylineEntity> findMoreRecommend(int storyline_commend_show_num) {
+        return storylineDaoImpl.findMoreRecommend(storyline_commend_show_num);
     }
 
     @Override
-    public List<StorylineEntity> findMoreRecommend(int storyline_commend_show_num) {
-        return storylineDaoImpl.findMoreByOrderHot(0,1,storyline_commend_show_num);
+    public List<StorylineEntity> findStorylineNewList(int show_num) {
+        return null;
     }
 }

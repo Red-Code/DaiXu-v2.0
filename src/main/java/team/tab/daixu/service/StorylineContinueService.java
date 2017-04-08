@@ -21,7 +21,7 @@ public interface StorylineContinueService {
      * @param storylineContinueEntity 修改的持久化类
      * @return 是否成功
      */
-    Boolean update(int StorylineContinueId,StorylineContinueEntity storylineContinueEntity);
+    Boolean update(long StorylineContinueId,StorylineContinueEntity storylineContinueEntity);
 
     /**
      * 查询某一篇故事线所拥有的未完结支线

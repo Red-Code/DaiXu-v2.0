@@ -16,4 +16,8 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<UserEntity> implements UserDao {
 
+    @Override
+    public UserEntity findByEmail(String user_email) {
+        return null;
+    }
 }

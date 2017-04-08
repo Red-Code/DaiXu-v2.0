@@ -11,4 +11,8 @@ import java.util.List;
  */
 @Repository
 public class AdvDaoImpl extends BaseDaoImpl<AdvEntity> implements AdvDao {
+    @Override
+    public List<AdvEntity> loadAll() {
+        return null;
+    }
 }

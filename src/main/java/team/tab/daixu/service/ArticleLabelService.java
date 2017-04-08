@@ -14,5 +14,5 @@ public interface ArticleLabelService {
      * @param mix_article_label 文章标签（每个标签之间用逗号隔开）
      * @return 是否成功
      */
-    Boolean actSave(int article_id,String mix_article_label);
+    Boolean actSave(long article_id,String mix_article_label);
 }

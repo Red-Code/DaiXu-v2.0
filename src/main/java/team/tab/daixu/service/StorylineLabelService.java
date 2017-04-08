@@ -14,5 +14,5 @@ public interface StorylineLabelService {
      * @param mix_storyline_label 故事线标签（不同标签之间用逗号隔开）
      * @return 是否成功
      */
-    Boolean save(int storyline_id,String mix_storyline_label);
+    Boolean save(long storyline_id,String mix_storyline_label);
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import team.tab.daixu.cons.OrderConstent;
 import team.tab.daixu.dao.ArticleDao;
+import team.tab.daixu.dao.BaseDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.service.ArticleService;
 import team.tab.daixu.util.upload.UploadUtil;
@@ -58,14 +59,17 @@ public class ArticleServiceImpl implements ArticleService {
 
         //将封面图url装到持久化类里面
         articleEntity.setSurface(urlPath + uri.replace("\\", "/") + "/" + newFileName + "." + suffix);
-        ArticleEntity result_save = articleDaoImpl.act_save(articleEntity);
-
-        return result_save;
+        Boolean result_save = articleDaoImpl.save(articleEntity);
+        if (result_save){
+            return articleEntity;
+        }else {
+            return null;
+        }
     }
 
     @Override
     public ArticleEntity findOneById(Integer article_id) {
-        return articleDaoImpl.getOneById(article_id);
+        return articleDaoImpl.getById(article_id);
     }
 
     @Override

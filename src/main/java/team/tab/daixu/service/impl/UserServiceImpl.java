@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         String get_psw_md5 = passwordUtilImpl.encrypted(password);//将传入密码进行md5加密
 
         if (user_password == get_psw_md5){//比较传入密码是否正确
-            int user_id = userEntity.getId();
+            long user_id = userEntity.getId();
 
             //根据用户id生成一个盐值，每次发送id都将该盐值也发送过去，当下次接收cookie时判断该盐值是否正确，如果不正确就表示被篡改了
             String user_salt = passwordUtilImpl.encrypted(user_id+"user_id");

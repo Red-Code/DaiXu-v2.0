@@ -20,12 +20,12 @@ public class StorylineContinueServiceImpl implements StorylineContinueService {
     }
 
     @Override
-    public Boolean update(int StorylineContinueId, StorylineContinueEntity storylineContinueEntity) {
-        return storylineContinueDaoImpl.update(StorylineContinueId, storylineContinueEntity);
+    public Boolean update(long StorylineContinueId, StorylineContinueEntity storylineContinueEntity) {
+        return null;
     }
 
     @Override
     public List<StorylineContinueEntity> findNoEndByStorylineId(int storyline_id) {
-        return storylineContinueDaoImpl.findNoEndByStorylineId(storyline_id);
+        return null;
     }
 }
