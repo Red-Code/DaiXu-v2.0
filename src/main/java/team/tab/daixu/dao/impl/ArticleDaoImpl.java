@@ -7,10 +7,14 @@ import org.hibernate.cfg.Configuration;
 
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import team.tab.daixu.cons.ArticleRuleRank;
+import team.tab.daixu.cons.OrderConstent;
+import team.tab.daixu.cons.UserJoinType;
 import team.tab.daixu.dao.ArticleDao;
 import team.tab.daixu.entity.ArticleEntity;
 import team.tab.daixu.entity.RtaskEntity;
 import team.tab.daixu.entity.UserEntity;
+import team.tab.daixu.util.page.PageUtil;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
@@ -24,73 +28,96 @@ import java.util.List;
  */
 @Repository
 public class ArticleDaoImpl extends BaseDaoImpl<ArticleEntity> implements ArticleDao {
-    @Override
-    public ArticleEntity act_save(ArticleEntity articleEntity) {
-        return null;
-    }
+    //按文章总楼数降序排列
+    private final String GET_HOT="from ArticleEntity order by total desc";
+    //按文章的更新时间降序排列
+    private final String GET_NEW="from ArticleEntity order by update desc";
+    //是精品文章，且按文章的更新时间降序排列
+    private final String GET_FINE_NEW="from ArticleEntity where fine=2 order by update desc";
+    //按等级限制，按文章的更新时间降序排列
+    private final String GET_RANK_NEW="from ArticleEntity where jurisdiction=? order by update desc";
+    //按等级限制，按文章总楼数降序排列
+    private final String GET_RANK_HOT="from ArticleEntity where jurisdiction=? order by total desc";
+    //按等级限制，按标签限制，按文章的更新时间降序排列
+    private final String GET_RANK_LABLE_NEW="from ArticleEntity a,ArticleLabelEntity ab where a.jurisdiction=? and ab.label=? and a.id=ab.articleId order by a.update desc";
+    //按等级限制，按标签限制，按文章总楼数降序排列
+    private final String GET_RANK_LABLE_HOT="from ArticleEntity a,ArticleLabelEntity ab where a.jurisdiction=? and ab.label=? and a.id=ab.articleId order by a.total desc";
+    //某用户发布的文章，按文章的更新时间降序排列
+    private final String GET_USER_NEW="";
+    //某用户续写的文章，按文章总楼数降序排列
+    private final String GET_USER_HOT="";
 
     @Override
-    public ArticleEntity getOneById(Integer article_id) {
-        String hql = "from ArticleEntity where id="+article_id;//hql语句
-        Query query = sessionFactory.getCurrentSession().createQuery(hql);
-
-
-        List<ArticleEntity> list_article = query.list();
-
-        Serializable ddd = sessionFactory.getCurrentSession().save(list_article.get(0));
-        System.out.print("list结构"+list_article.get(0).getName());
-
-//        Session session=sessionFactory.openSession();//打开Session
-//        Transaction tx=session.beginTransaction();//开启事务
-//        ArticleEntity articleEntity= new ArticleEntity();//实例化对象
-//        articleEntity.setArticleName("1231");
-//        articleEntity.setArticleContent("enisda");
-//        articleEntity.setArticleAuthor(321);
-//
-//        session.save(articleEntity);
-//        tx.commit();//提交事务
-//        session.close();//关闭Session
-
-        return null;
-    }
-
-    @Override
-    public List<ArticleEntity> findHomepageHeadArticle() {
-        return null;
+    public List<ArticleEntity> findHomepageHeadArticle(int show_num) {
+        List<ArticleEntity> date_list = find(GET_HOT, 0, show_num);
+        return date_list;
     }
 
     @Override
     public List<ArticleEntity> findArticleNewList(int show_num) {
-        return null;
+        List<ArticleEntity> date_list = find(GET_NEW, 0, show_num);
+        return date_list;
     }
 
     @Override
     public List<ArticleEntity> findArticleRecommendList(int show_num) {
-        return null;
+        List<ArticleEntity> date_list = find(GET_FINE_NEW, 0, show_num);
+        return date_list;
     }
 
     @Override
-    public List<ArticleEntity> findMoreByWhere(Integer begin_limit, String order, Integer rule, int show_num) {
-        return null;
+    public PageUtil findMoreByWhere(int now_page, OrderConstent order, ArticleRuleRank rule_rank, int show_num) {
+        PageUtil pageUtil;
+        int jurisdictionRank = judgeUtilImpl.getJurisdictionRank(rule_rank);
+
+        switch (order){
+            case ORDER_NEW:
+                pageUtil = pagedQuery(GET_RANK_NEW,now_page,show_num,jurisdictionRank);
+                break;
+            case ORDER_HOT:
+                pageUtil = pagedQuery(GET_RANK_HOT,now_page,show_num,jurisdictionRank);
+                break;
+            default:
+                pageUtil = pagedQuery(GET_RANK_NEW,now_page,show_num,jurisdictionRank);
+                break;
+        }
+        return pageUtil;
     }
 
     @Override
-    public List<ArticleEntity> findMoreByWhere(Integer begin_limit, String order, Integer rule, int show_num, String tag) {
-        return null;
+    public PageUtil findMoreByWhere(int now_page, OrderConstent order, ArticleRuleRank rule_rank, int show_num, String tag) {
+        PageUtil pageUtil;
+        int jurisdictionRank = judgeUtilImpl.getJurisdictionRank(rule_rank);
+
+        switch (order){
+            case ORDER_NEW:
+                pageUtil = pagedQuery(GET_RANK_LABLE_NEW,now_page,show_num,jurisdictionRank,tag);
+                break;
+            case ORDER_HOT:
+                pageUtil = pagedQuery(GET_RANK_LABLE_HOT,now_page,show_num,jurisdictionRank,tag);
+                break;
+            default:
+                pageUtil = pagedQuery(GET_RANK_LABLE_NEW,now_page,show_num,jurisdictionRank,tag);
+                break;
+        }
+        return pageUtil;
     }
 
     @Override
-    public int findPageSum(int show_num) {
-        return 0;
-    }
+    public PageUtil findMoreByUser(long user_id, int now_page, OrderConstent order, int show_num, UserJoinType relate_type) {
+        PageUtil pageUtil;
 
-    @Override
-    public List<ArticleEntity> findMoreByUser(Integer user_id, Integer begin_limit, String order, int show_num, int relate_type) {
-        return null;
-    }
-
-    @Override
-    public int findPageSumByUser(Integer user_id, int show_num, int relate_type) {
-        return 0;
+        switch (order){
+            case ORDER_NEW:
+                pageUtil = pagedQuery(GET_RANK_NEW,now_page,show_num);
+                break;
+            case ORDER_HOT:
+                pageUtil = pagedQuery(GET_RANK_HOT,now_page,show_num);
+                break;
+            default:
+                pageUtil = pagedQuery(GET_RANK_NEW,now_page,show_num);
+                break;
+        }
+        return pageUtil;
     }
 }

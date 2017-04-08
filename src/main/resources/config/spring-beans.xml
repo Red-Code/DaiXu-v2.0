@@ -34,6 +34,7 @@
     <!--util类-->
     <bean id="passwordUtilImpl" class="team.tab.daixu.util.password.impl.Md5UtilImpl"/>
     <bean id="uploadUtilImpl" class="team.tab.daixu.util.upload.impl.UploadUtilImpl"/>
+    <bean id="judgeUtilImpl" class="team.tab.daixu.util.judge.impl.JudgeUtilImpl"/>
     <bean id="pageUtilImpl" class="team.tab.daixu.util.page.impl.PageUtilImpl">
         <!--每页展示的记录数-->
         <constructor-arg index="0" value="0"/>

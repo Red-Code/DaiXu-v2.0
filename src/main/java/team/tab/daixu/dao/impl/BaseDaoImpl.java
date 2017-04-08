@@ -7,6 +7,7 @@ import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.util.Assert;
 import team.tab.daixu.dao.BaseDao;
+import team.tab.daixu.util.judge.JudgeUtil;
 import team.tab.daixu.util.page.PageUtil;
 
 import javax.annotation.Resource;
@@ -24,7 +25,9 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     @Resource(name = "sessionFactory")
     protected SessionFactory sessionFactory;//注入sessionFactory
     @Resource(name = "pageUtilImpl")
-    private PageUtil pageUtilImpl;
+    protected PageUtil pageUtilImpl;
+    @Resource(name = "judgeUtilImpl")
+    protected JudgeUtil judgeUtilImpl;
 
     private Class<T> entityClass;
 
@@ -113,16 +116,20 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public List find(String hql) {
+    public List find(String hql, int begin_pos, int result_num) {
         Query query = creatQuery(hql,null);
+        query.setFirstResult(begin_pos);
+        query.setMaxResults(result_num);
 
         List list = query.list();
         return list;
     }
 
     @Override
-    public List find(String hql,Object... values) {
+    public List find(String hql, int begin_pos, int result_num, Object... values) {
         Query query = creatQuery(hql,values);
+        query.setFirstResult(begin_pos);
+        query.setMaxResults(result_num);
 
         List list = query.list();
         return list;
@@ -160,7 +167,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
         //根据条件，查询存在的条目“总数”,并将总数存入page对象
         String countHql = "select count(*)"+removeSelect(removeOrder(hql));
-        List countList = find(countHql,values);
+        List countList = find(countHql,0,1,values);
         long totalCount = (Long)countList.get(0);
         pageUtilImpl.setTotalCount(totalCount);
 

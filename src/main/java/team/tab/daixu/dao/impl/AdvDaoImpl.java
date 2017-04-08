@@ -4,6 +4,8 @@ import org.springframework.stereotype.Repository;
 import team.tab.daixu.dao.AdvDao;
 import team.tab.daixu.entity.AdvEntity;
 
+import java.util.List;
+
 /**
  * Created by CLY on 2017/1/5.
  */

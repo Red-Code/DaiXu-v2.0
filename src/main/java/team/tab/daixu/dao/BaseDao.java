@@ -49,25 +49,23 @@ public interface BaseDao<T> {
     T loadById(long id);
 
     /**
-     * 加载所有持久化对象
-     * @return 持久化对象列表
-     */
-    List<T> loadAll();
-
-    /**
      * 执行hql语句查询，并返回list结果
      * @param hql hql语句
-     * @return 结果列表
+     * @param begin_pos 开始查询的位置（从第0条开始）
+     * @param result_num 返回多少条结果
+     * @return 查询结果列表
      */
-    List find(String hql);
+    List find(String hql,int begin_pos,int result_num);
 
     /**
      * 执行一个含有占位符的hql查询，并返回list结果
      * @param hql hql语句
+     * @param begin_pos 开始查询的位置（从第0条开始）
+     * @param result_num 返回多少条结果
      * @param values 占位符所对应的具体属性值
      * @return 查询结果
      */
-    List find(String hql,Object... values);
+    List find(String hql,int begin_pos,int result_num,Object... values);
 
     /**
      * 对延迟加载的持久化对象执行初始化
